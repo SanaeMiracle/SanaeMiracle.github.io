@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="##JavaScript的基本语法">
+  <meta name="description" content="对象（Object） 对象是JS中的引用数据类型 对象是一种复合数据类型，在对象中可以保存多个不同数据类型的属性 使用typeof检查一个对象时，会返回object">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基本语法">
-<meta property="og:url" content="http://example.com/2021/04/27/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:title" content="对象">
+<meta property="og:url" content="http://example.com/2021/04/27/javaScript/%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="Fang">
-<meta property="og:description" content="##JavaScript的基本语法">
+<meta property="og:description" content="对象（Object） 对象是JS中的引用数据类型 对象是一种复合数据类型，在对象中可以保存多个不同数据类型的属性 使用typeof检查一个对象时，会返回object">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-27T07:15:36.000Z">
-<meta property="article:modified_time" content="2021-04-27T07:17:48.161Z">
+<meta property="article:published_time" content="2021-04-27T07:08:10.000Z">
+<meta property="article:modified_time" content="2021-04-27T07:14:24.790Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="javaScript">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/04/27/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+<link rel="canonical" href="http://example.com/2021/04/27/javaScript/%E5%AF%B9%E8%B1%A1/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>基本语法 | Fang</title>
+  <title>对象 | Fang</title>
   
 
 
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/27/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/27/javaScript/%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          基本语法
+          对象
         </h1>
 
         <div class="post-meta">
@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-27 15:15:36 / 修改时间：15:17:48" itemprop="dateCreated datePublished" datetime="2021-04-27T15:15:36+08:00">2021-04-27</time>
+              <time title="创建时间：2021-04-27 15:08:10 / 修改时间：15:14:24" itemprop="dateCreated datePublished" datetime="2021-04-27T15:08:10+08:00">2021-04-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,203 +210,196 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>##JavaScript的基本语法</p>
+        <h2 id="对象（Object）"><a href="#对象（Object）" class="headerlink" title="对象（Object）"></a>对象（Object）</h2><ul>
+<li>对象是JS中的引用数据类型</li>
+<li>对象是一种复合数据类型，在对象中可以保存多个不同数据类型的属性</li>
+<li>使用typeof检查一个对象时，会返回object</li>
+</ul>
 <span id="more"></span>
 
-<p>##JavaScript编写位置</p>
 <ul>
-<li>可以将js代码编写到标签的onclick属性或超链接的href属性中（当我们点击按钮时，js代码才会执行  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick&#x3D;&quot;alert(&#39;xxx&#39;);&quot;&gt;button&lt;&#x2F;button&gt;&#96;</span><br><span class="line">&lt;a href&#x3D;&quot;javascript:alert(&#39;xxx&#39;);&quot;&gt;&lt;&#x2F;a&gt;</span><br><span class="line">&lt;a href&#x3D;&quot;javascript:;&quot;&gt;&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure></li>
-<li>可以将js代码编写到script标签<br><code>&lt;script type=&quot;text/javascript&quot;&gt;alert(&quot;我是script标签中的代码&quot;);&lt;/script&gt;</code></li>
-</ul>
+<li><p><strong>创建对象</strong></p>
 <ul>
-<li>可以将js代码编写到外部js文件中，然后通过script标签引入<br><code>&lt;script type=&quot;text/javascript&quot; src=&quot;js/script.js&quot;&gt;&lt;/script&gt;</code><br>注：script标签一旦用于引入外部文件了，就不能在编写代码了，即使编写了浏览器也会忽略<br>如果需要则可以在创建一个新的script标签用于编写内部代码</li>
-</ul>
-<h2 id="字面量与变量"><a href="#字面量与变量" class="headerlink" title="字面量与变量"></a>字面量与变量</h2><ul>
-<li><strong>字面量</strong><br>字面量（常量），都是一些不可改变的值<br>比如 ：1 2 3 4 5<br>字面量都是可以直接使用，但是我们一般都不会直接使用字面量</li>
-<li><strong>变量</strong><br>变量可以用来保存字面量，而且变量的值是可以任意改变的<br>变量更加方便我们使用，所以在开发中都是通过变量去保存一个字面量，而很少直接使用字面量，可以通过变量对字面量进行描述</li>
-</ul>
-<ul>
-<li>声明赋值<br>通过 var 来声明变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var &#x3D; a;</span><br><span class="line">a &#x3D; 100;</span><br><span class="line">var b &#x3D; 100;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p>在JS中所有的可以由我们自主命名的都可以称为是标识符</p>
-<ul>
-<li><p>例如：变量名、函数名、属性名都属于标识符</p>
-</li>
-<li><p>命名一个标识符时需要遵守如下的规则：<br>  1.标识符中可以含有字母、数字、_、$<br>  2.标识符不能以数字开头<br>  3.标识符不能是ES中的关键字或保留字<br>  4.标识符一般都采用驼峰命名法</p>
-<ul>
-<li>首字母小写，每个单词的开头字母大写，其余字母小写<br>  <code>helloWorld xxxYyyZzz</code></li>
-</ul>
-</li>
-<li><p>JS底层保存标识符时实际上是采用的Unicode编码，所以理论上讲，所有的utf-8中含有的内容都可以作为标识符</p>
-</li>
-</ul>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
-<li><p>JS中一共分成六种数据类型</p>
-<pre><code>   String 字符串
-   Number 数值
-   Boolean 布尔值
-   Null 空值
-   Undefined 未定义
-   Object 对象
+<li>方式一：<pre><code>  var obj = new Object();
 </code></pre>
 </li>
-<li><p><strong>基本数据类型</strong>    </p>
-<ul>
-<li><p><strong>String 字符串</strong></p>
-<ul>
-<li>JS中的字符串需要使用引号引起来双引号或单引号都行</li>
-<li>在字符串中使用\作为转义字符<pre><code>  \&#39;  ==&gt; &#39;
-  \&quot;  ==&gt; &quot;
-  \n  ==&gt; 换行
-  \t  ==&gt; 制表符
-  \\  ==&gt; \    
-</code></pre>
-</li>
-<li>使用typeof运算符检查字符串时，会返回”string”    </li>
-</ul>
-</li>
-<li><p><strong>Number 数值</strong></p>
-<ul>
-<li>JS中所有的整数和浮点数都是Number类型</li>
-<li>特殊的数字<pre><code>  Infinity 正无穷
-  -Infinity 负无穷
-  NaN 非法数字（Not A Number）
-</code></pre>
-</li>
-<li>其他进制的数字的表示：<pre><code>  0b 开头表示二进制，但是不是所有的浏览器都支持
-  0 开头表示八进制
-  0x 开头表示十六进制
-</code></pre>
-</li>
-<li>使用typeof检查一个Number类型的数据时，会返回”number”<br>  （包括NaN 和 Infinity）</li>
-</ul>
-</li>
-<li><p><strong>Boolean 布尔值</strong></p>
-<ul>
-<li>布尔值主要用来进行逻辑判断，布尔值只有两个<pre><code>  true 逻辑的真
-  false 逻辑的假
-</code></pre>
-</li>
-<li>使用typeof检查一个布尔值时，会返回”boolean”    </li>
-</ul>
-</li>
-<li><p><strong>Null 空值</strong></p>
-<ul>
-<li>空值专门用来表示为空的对象<pre><code>  Null类型的值只有一个 null
-</code></pre>
-</li>
-<li>使用typeof检查一个Null类型的值时会返回”object”  </li>
-</ul>
-</li>
-<li><p>** Undefined 未定义**</p>
-<ul>
-<li>如果声明一个变量但是没有为变量赋值此时变量的值就是undefined<pre><code>  该类型的值只有一个 undefined
-</code></pre>
-</li>
-<li>使用typeof检查一个Undefined类型的值时，会返回”undefined”</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>引用数据类型</strong>    </p>
-<ul>
-<li>Object 对象</li>
-</ul>
-</li>
-</ul>
-<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ul>
-<li><p>运算符也称为操作符</p>
-</li>
-<li><p>通过运算符可以对一个或多个值进行运算或操作</p>
-</li>
-<li><p>typeof运算符</p>
-<ul>
-<li>用来检查一个变量的数据类型</li>
-<li>语法：typeof 变量<pre><code>  var a = 100;
-  typeof a; //number
-</code></pre>
-</li>
-<li>它会返回一个用于描述类型的字符串作为结果</li>
-</ul>
-</li>
-<li><p>算数运算符</p>
-<pre><code>  +    对两个值进行加法运算并返回结果
-  -   对两个值进行减法运算并返回结果
-  *    对两个值进行乘法运算并返回结果
-  /    对两个值进行除法运算并返回结果
-  %    对两个值进行取余运算并返回结果
-</code></pre>
-<ul>
-<li>除了加法以外，对非Number类型的值进行运算时，都会先转换为Number然后在做运算。</li>
-<li>而做加法运算时，如果是两个字符串进行相加，则会做拼串操作，将两个字符连接为一个字符串。</li>
-<li>任何值和字符串做加法，都会先转换为字符串，然后再拼串</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>一元运算符</p>
-<ul>
-<li><p>一元运算符只需要一个操作数</p>
-</li>
-<li><p>一元的 +</p>
-<ul>
-<li>就是正号，不会对值产生任何影响，但是可以将一个非数字转换为数字</li>
-<li>例子：<pre><code>  var a = true;
-  a = +a;
+<li>方式二：<pre><code>  var obj = &#123;&#125;;
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p>一元的 -</p>
+<li><p><strong>向对象中添加属性</strong></p>
 <ul>
-<li>就是负号，可以对一个数字进行符号位取反</li>
-<li>例子：<pre><code>  var a = 10;
-  a = -a;
+<li>语法：<pre><code>  对象.属性名 = 属性值;
+  对象[&quot;属性名&quot;] = 属性值;
+</code></pre>
+<ul>
+<li>对象的属性名没有任何要求，不需要遵守标识符的规范，<br>  但是在开发中，尽量按照标识符的要求去写。</li>
+<li>属性值也可以任意的数据类型。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>读取对象中的属性</strong></p>
+<ul>
+<li><p>语法：</p>
+<pre><code>  对象.属性名
+  对象[&quot;属性名&quot;]
+</code></pre>
+</li>
+<li><p>如果读取一个对象中没有的属性，它不会报错，而是返回一个undefined</p>
+</li>
+</ul>
+</li>
+<li><p><strong>删除对象中的属性</strong></p>
+<ul>
+<li>语法：<pre><code>  delete 对象.属性名
+  delete 对象[&quot;属性名&quot;]
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p>自增</p>
+<li><p><strong>使用in检查对象中是否含有指定属性</strong></p>
 <ul>
-<li><p>自增可以使变量在原值的基础上自增1</p>
+<li><p>语法：</p>
+<pre><code>  &quot;属性名&quot; in 对象
+</code></pre>
 </li>
-<li><p>自增使用 ++</p>
+<li><p>如果在对象中含有该属性，则返回true如果没有则返回false</p>
 </li>
-<li><p>自增可以使用 前++（++a）后++(a++)</p>
+</ul>
 </li>
-<li><p>无论是++a 还是 a++都会立即使原变量自增1<br>  不同的是++a和a++的值是不同的，</p>
-<pre><code>  ++a的值是变量的新值（自增后的值）
-  a = a + 1;
-  a = a;
-
-  a++的值是变量的原值（自增前的值）
-  a = a;
-  a = a + 1;
+<li><p><strong>使用对象字面量</strong>，在创建对象时直接向对象中添加属性</p>
+<ul>
+<li>语法：<pre><code>  var obj = &#123;
+                  属性名:属性值,
+                  属性名:属性值,
+                  属性名:属性值,
+                  属性名:属性值
+          &#125;
+      
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p>自减    </p>
+<li><p><strong>基本数据类型和引用数据类型</strong></p>
 <ul>
-<li><p>自减可以使变量在原值的基础上自减1</p>
+<li>基本数据类型<pre><code>  String Number Boolean Null Undefined
+</code></pre>
 </li>
-<li><p>自减使用 –</p>
+<li>引用数据类型<pre><code>  Object
+</code></pre>
 </li>
-<li><p>自减可以使用 前–（–a）后–(a–)</p>
+<li>基本数据类型的数据，变量是直接保存的它的值。<br>  变量与变量之间是互相独立的，修改一个变量不会影响其他的变量。</li>
+<li>引用数据类型的数据，变量是保存的对象的引用（内存地址）。<br>  如果多个变量指向的是同一个对象，此时修改一个变量的属性，会影响其他的变量。</li>
+<li>比较两个变量时，对于基本数据类型，比较的就是值，<br>  对于引用数据类型比较的是地址，地址相同才相同</li>
+</ul>
 </li>
-<li><p>无论是–a 还是 a–都会立即使原变量自减1<br>  不同的是–a和a–的值是不同的，</p>
-<pre><code>  --a的值是变量的新值（自减后的值）
-  a = a - 1;
-  a = a;
-
-  a--的值是变量的原值（自减前的值）
-  a = a;
-  a = a - 1;
+</ul>
+<h3 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h3><ul>
+<li>在JS中使用Date对象来表示一个时间</li>
+<li>创建一个Date对象<ul>
+<li>如果直接使用构造函数创建一个Date对象，则会封装为当前代码执行的时间<pre><code>  var date = new Date();  //封装此行代码执行的时间
+  console.log(date); //打印date  Fri Dec 11 2020 23:32:17 GMT+0800 (中国标准时间)
 </code></pre>
 </li>
 </ul>
 </li>
+<li>创建一个指定的时间对象<ul>
+<li>需要在构造函数中传递一个表示时间的字符串作为参数</li>
+<li>日期的格式: 月/日/年 时:分:秒<pre><code>  var date = new Date(&quot;2/18/2011 11:10:30&quot;);
+  console.log(date); //2011-02-18T03:10:30.000Z
+</code></pre>
+</li>
 </ul>
+</li>
+<li>getDate()<ul>
+<li>获取当前日期对象是几日<pre><code>  var date = new Date(&quot;2/18/2011 11:10:30&quot;);
+  var d = date.getDate();
+  console.log(d); //18
+</code></pre>
+</li>
+</ul>
+</li>
+<li>getDay()<ul>
+<li>获取当前日期对象时周几</li>
+<li>会返回一个0-6的值<br>  0 表示周日<br>  1 表示周一<pre><code>  var date = new Date(&quot;2/18/2011 11:10:30&quot;);
+  var d = date.getDay();
+  console.log(d); //5 (周六)
+</code></pre>
+</li>
+</ul>
+</li>
+<li>getMonth()<ul>
+<li>获取当前时间对象的月份</li>
+<li>会返回一个0-11的值<br>  0 表示1月<br>  1 表示2月<br>  11 表示12月<pre><code>  var date = new Date(&quot;2/18/2011 11:10:30&quot;);
+  var d = date.getMonth();
+  console.log(d); //1
+</code></pre>
+</li>
+</ul>
+</li>
+<li>getFullYear()<ul>
+<li>获取当前日期对象的年份<pre><code>  var date = new Date(&quot;2/18/2011 11:10:30&quot;);
+  var d = date.getFullYear();
+  console.log(d); //2011
+</code></pre>
+</li>
+</ul>
+</li>
+<li>getTime()<ul>
+<li>获取当前日期对象的时间戳<ul>
+<li>时间戳，指的是从格林威治标准时间的1970年1月1日，0时0分0秒 到当前日期所花费的毫秒数</li>
+</ul>
+</li>
+<li>计算机底层在保存时间时使用都是时间戳<pre><code>      var date = new Date(&quot;2/18/2011 11:10:30&quot;);
+      var time = date.getTime();
+      console.log(time); //1297998630000 (毫秒数)
+</code></pre>
+</li>
+</ul>
+</li>
+<li>Date.now()<ul>
+<li>获取当前的时间戳<pre><code>  var time = Date.now();
+</code></pre>
+</li>
+<li>可以利用时间戳来测试代码的执行的性能</li>
+</ul>
+</li>
+</ul>
+<h3 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h3><ul>
+<li>Math和其他的对象不同，它不是一个构造函数，它属于一个工具类不用创建对象，它里边封装了数学运算相关的属性和方法</li>
+</ul>
+<ul>
+<li>abs() 可以用来计算一个数的绝对值<pre><code>console.log(Math.abs(-2)); //2
+</code></pre>
+</li>
+<li>Math.ceil() 可以对一个数进行向上取整，小数位只有有值就自动进1<pre><code>  console.log(Math.ceil(1.1)); //2
+</code></pre>
+</li>
+<li>Math.floor() 可以对一个数进行向下取整，小数部分会被舍掉<pre><code>  console.log(Math.floor(1.99)); //1
+</code></pre>
+</li>
+<li>Math.round() 可以对一个数进行四舍五入取整<pre><code>  console.log(Math.round(1.4)); //1
+</code></pre>
+</li>
+<li>Math.random() 可以用来生成一个0-1之间的随机数<pre><code>  //生成一个0-10的随机数
+      Math.round(Math.random() * 10);
+  //生成一个1-5之间的随机数
+      Math.round(Math.random() * 5 + 1);
+</code></pre>
+</li>
+<li>max() 可以获取多个数中的最大值<pre><code>  var max = Math.max(10,45,30,100); // 100
+</code></pre>
+</li>
+<li>min() 可以获取多个数中的最小值<pre><code>  var min = Math.min(10,45,30,100); // 10
+</code></pre>
+</li>
+<li>Math.pow(x,y) 返回x的y次幂<pre><code>  console.log(Math.pow(12,3)); //12^3
+</code></pre>
+</li>
+<li>Math.sqrt() 用于对一个数进行开方运算<pre><code>  console.log(Math.sqrt(20));
+</code></pre>
 </li>
 </ul>
 
@@ -427,12 +420,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/27/%E5%AF%B9%E8%B1%A1/" rel="prev" title="对象">
-      <i class="fa fa-chevron-left"></i> 对象
+    <a href="/2021/04/27/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/04/27/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="next" title="类型转换">
-      类型转换 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/04/27/javaScript/%E5%87%BD%E6%95%B0/" rel="next" title="函数">
+      函数 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -492,7 +485,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E4%B8%8E%E5%8F%98%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">字面量与变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">运算符</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%EF%BC%88Object%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">对象（Object）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">Date对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.</span> <span class="nav-text">Math对象</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -508,20 +501,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -559,7 +552,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共7.7k字</span>
+  <span class="post-count">全站共16.6k字</span>
 </div>
         
 
