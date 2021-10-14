@@ -30,7 +30,7 @@
 <meta property="og:description" content="函数（Function） 函数也是一个对象，也具有普通对象的功能 函数中可以封装一些代码，在需要的时候可以去调用函数来执行这些代码 使用typeof检查一个函数时会返回function">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-27T07:13:32.000Z">
-<meta property="article:modified_time" content="2021-04-27T12:51:46.492Z">
+<meta property="article:modified_time" content="2021-10-11T11:26:34.001Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="javaScript">
 <meta name="twitter:card" content="summary">
@@ -185,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-27 15:13:32 / 修改时间：20:51:46" itemprop="dateCreated datePublished" datetime="2021-04-27T15:13:32+08:00">2021-04-27</time>
+              <time title="创建时间：2021-04-27 15:13:32" itemprop="dateCreated datePublished" datetime="2021-04-27T15:13:32+08:00">2021-04-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-11 19:26:34" itemprop="dateModified" datetime="2021-10-11T19:26:34+08:00">2021-10-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -244,11 +250,24 @@
 </li>
 <li><p><strong>调用函数</strong></p>
 <ul>
-<li>语法：<pre><code>  函数对象([实参1,实参2...实参N]);
+<li><p>语法：</p>
+<pre><code>  函数对象([实参1,实参2...实参N]);
   fun(); sum(); alert(); Number(); parseInt();
+  //fun() 直接调用
+  //obj.fun() 通过对象调用
+  //new fun() new调用
+  //fun.call(obj) fun.apply(obj) 临时让fun成为obj的方法进行调用 obj.fun()
+      var obj =&#123;&#125;;
+      funcation fun() &#123;
+          this.name = &quot;123&quot;;
+      &#125;
+      //obj.fun() 错误，obj中没有fun这个方法
+      fun.call(obj)
+      console.log(obj.name) // 123
 </code></pre>
 </li>
-<li>当我们调用函数时，函数中封装的代码会按照编写的顺序执行</li>
+<li><p>当我们调用函数时，函数中封装的代码会按照编写的顺序执行</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -281,11 +300,13 @@
 <li>如果return语句后不跟任何值就相当于返回一个undefined， 如果函数中不写return，则也会返回undefined</li>
 </ul>
 </li>
-<li><p><strong>立即执行函数</strong></p>
+<li><p><strong>立即执行函数(IIFE)</strong></p>
 <ul>
-<li><p>函数定义完，立即被调用，这种函数叫做立即执行函数</p>
+<li><p>函数定义完，立即被调用，这种函数叫做立即执行函数，匿名函数直接调用</p>
 </li>
-<li><p>立即执行函数往往只会执行一次<br>  语法：</p>
+<li><p>立即执行函数往往只会执行一次</p>
+</li>
+<li><p>作用：隐藏实现，不会污染外部命名空间，编写js模块<br>  语法：</p>
 <pre><code>  (function([形参1,形参2...形参N])&#123;
       语句...
   &#125;)([实参1,实参2...实参N]);
@@ -424,67 +445,9 @@
 </li>
 </ul>
 </li>
-<li><p><strong>原型 prototype</strong></p>
-<ul>
-<li><p>我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个属性对应着一个对象，这个对象就是我们所谓的原型对象</p>
-</li>
-<li><p>如果函数作为普通函数调用prototype没有任何作用，当函数以构造函数的形式调用时，它所创建的对象中都会有一个隐含的属性，指向该构造函数的原型对象，我们可以通过 __proto__ 来访问该属性</p>
-</li>
-<li><p>原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象，我们可以将对象中共有的内容，统一设置到原型对象中。</p>
-</li>
-<li><p>当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用，如果没有则会去原型对象中寻找，如果找到则直接使用</p>
-</li>
-<li><p>我们创建构造函数时，可以将这些对象共有的属性和方法，统一添加到构造函数的原型对象中，这样不用分别为每一个对象添加，也不会影响到全局作用域，就可以使每个对象都具有这些属性和方法了</p>
-</li>
-<li><p>向构造函数的原型中添加属性</p>
-<pre><code>   构造函数名.prototype.属性名 = *;
-  MyClass.prototype.name = 123;
-</code></pre>
-</li>
-<li><p>向构造函数中原型中添加一个方法</p>
-<pre><code>  构造函数名.prototype.方法名 = function()&#123;
-          语句...
-      &#125;
-
-  MyClass.prototype.sayHello = function()&#123;
-      console.log(&quot;hello&quot;);
-  &#125;;
-</code></pre>
-</li>
-<li><p><strong>hasOwnProperty()</strong></p>
-<ul>
-<li><p>可以使用对象的hasOwnProperty()来检查对象自身中是否含有该属性</p>
-</li>
-<li><p>使用hasOwnProperty()方法只有当对象自身中含有属性时，才会返回true</p>
-</li>
-<li><p>使用in检查对象中是否含有某个属性时，如果对象中没有但是原型中有，也会返回true</p>
-<pre><code>  function Person(name, age, gender)&#123;
-      this.name = name;
-      this.age = age;
-      this.gender = gender;
-      &#125;
-
-  Person.prototype.a = 123;
-  var p = new Person(&quot;张三&quot;,18,&quot;男&quot;);
-  console.log(&quot;a&quot; in p); //true 
-  console.log(p.hasOwnProperty(&quot;a&quot;)); //false
-  console.log(p.__proto__.hasOwnProterty(&quot;a&quot;)); //true
-</code></pre>
-</li>
 </ul>
-</li>
-<li><p><strong>注意：</strong></p>
 <ul>
-<li><p>原型对象也是对象，所以它也有原型，当我们使用一个对象的属性或方法时，会现在自身中寻找，自身中如果有，则直接使用，如果没有则去原型对象中寻找，如果原型对象中有，则使用，如果没有则去原型的原型中寻找，直到找到Object对象的原型，Object对象的原型没有原型，如果在Object原型中依然没有找到，则返回undefined</p>
-</li>
-<li><p><strong>通过原型对象添加的属性和方法函数本身是没有的</strong>，这就是静态方法和实例方法的区别</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>垃圾回收（GC）</strong></p>
-<ul>
+<li><strong>垃圾回收（GC）</strong><ul>
 <li> 就像人生活的时间长了会产生垃圾一样，程序运行过程中也会产生垃圾，这些垃圾积攒过多以后，会导致程序运行的速度过慢，所以我们需要一个垃圾回收的机制，来处理程序运行过程中产生垃圾</li>
 <li>当一个对象没有任何的变量或属性对它进行引用，此时我们将永远无法操作该对象，此时这种对象就是一个垃圾，这种对象过多会占用大量的内存空间，导致程序运行变慢，所以这种垃圾必须进行清理。</li>
 <li>在JS中拥有自动的垃圾回收机制，会自动将这些垃圾对象从内存中销毁，我们不需要也不能进行垃圾回收的操作</li>
@@ -597,7 +560,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -648,7 +611,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共16.6k字</span>
+  <span class="post-count">全站共19.9k字</span>
 </div>
         
 
