@@ -22,19 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="事件事件的冒泡事件的冒泡（Bubble）  所谓的冒泡指的就是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发 在开发中大部分情况冒泡都是有用的,如果不希望发生事件冒泡可以通过事件对象来取消冒泡 可以将事件对象的 cancelBubble 设置为true，即可取消冒泡，这个需要设置在子元素的事件中，并且大多数都是设置的可以冒泡，除了某些函数默认不冒泡  event.can">
+  <meta name="description" content="事件HTML 事件是发生在 HTML 元素上的事情。 当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fang">
-<meta property="og:url" content="http://example.com/2021/05/24/DOM/%E4%BA%8B%E4%BB%B6/index.html">
+<meta property="og:title" content="事件">
+<meta property="og:url" content="http://example.com/2021/10/15/DOM/%E4%BA%8B%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Fang">
-<meta property="og:description" content="事件事件的冒泡事件的冒泡（Bubble）  所谓的冒泡指的就是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发 在开发中大部分情况冒泡都是有用的,如果不希望发生事件冒泡可以通过事件对象来取消冒泡 可以将事件对象的 cancelBubble 设置为true，即可取消冒泡，这个需要设置在子元素的事件中，并且大多数都是设置的可以冒泡，除了某些函数默认不冒泡  event.can">
+<meta property="og:description" content="事件HTML 事件是发生在 HTML 元素上的事情。 当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-24T13:59:19.287Z">
-<meta property="article:modified_time" content="2021-05-26T08:42:29.224Z">
+<meta property="article:published_time" content="2021-10-15T13:51:28.000Z">
+<meta property="article:modified_time" content="2021-10-15T13:53:32.262Z">
 <meta property="article:author" content="Fangck">
+<meta property="article:tag" content="DOM">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/05/24/DOM/%E4%BA%8B%E4%BB%B6/">
+<link rel="canonical" href="http://example.com/2021/10/15/DOM/%E4%BA%8B%E4%BB%B6/">
 
 
 <script id="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title> | Fang</title>
+  <title>事件 | Fang</title>
   
 
 
@@ -162,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/24/DOM/%E4%BA%8B%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/15/DOM/%E4%BA%8B%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -175,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          事件
         </h1>
 
         <div class="post-meta">
@@ -184,16 +185,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-05-24 21:59:19" itemprop="dateCreated datePublished" datetime="2021-05-24T21:59:19+08:00">2021-05-24</time>
+              <time title="创建时间：2021-10-15 21:51:28 / 修改时间：21:53:32" itemprop="dateCreated datePublished" datetime="2021-10-15T21:51:28+08:00">2021-10-15</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-26 16:42:29" itemprop="dateModified" datetime="2021-05-26T16:42:29+08:00">2021-05-26</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaScript/" itemprop="url" rel="index"><span itemprop="name">javaScript</span></a>
+                </span>
+            </span>
 
           
 
@@ -206,7 +210,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="事件的冒泡"><a href="#事件的冒泡" class="headerlink" title="事件的冒泡"></a>事件的冒泡</h2><p>事件的冒泡（Bubble）</p>
+        <h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>HTML 事件是发生在 HTML 元素上的事情。</p>
+<p>当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。</p>
+<span id="more"></span>
+
+<h2 id="事件的冒泡"><a href="#事件的冒泡" class="headerlink" title="事件的冒泡"></a>事件的冒泡</h2><p>事件的冒泡（Bubble）</p>
 <ul>
 <li>所谓的冒泡指的就是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发</li>
 <li>在开发中大部分情况冒泡都是有用的,如果不希望发生事件冒泡可以通过事件对象来取消冒泡<ul>
@@ -277,6 +285,9 @@ parent.onclick=function()&#123;
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DOM/" rel="tag"># DOM</a>
+          </div>
 
         
 
@@ -284,12 +295,12 @@ parent.onclick=function()&#123;
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/27/DOM/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/" rel="prev" title="事件对象">
-      <i class="fa fa-chevron-left"></i> 事件对象
+    <a href="/2021/10/15/javaScript/%E5%8F%98%E9%87%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="prev" title="变量与作用域">
+      <i class="fa fa-chevron-left"></i> 变量与作用域
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/10/13/javaScript/%E5%8F%98%E9%87%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/2021/10/15/javaScript/%E5%87%BD%E6%95%B0/" rel="next" title="函数">
+      函数 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -416,7 +427,7 @@ parent.onclick=function()&#123;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共19.9k字</span>
+  <span class="post-count">全站共21.4k字</span>
 </div>
         
 
