@@ -30,7 +30,7 @@
 <meta property="og:description" content="变量 字面量字面量（常量），都是一些不可改变的值比如 ：1 2 3 4 5字面量都是可以直接使用，但是我们一般都不会直接使用字面量 变量变量可以用来保存字面量，而且变量的值是可以任意改变的变量更加方便我们使用，所以在开发中都是通过变量去保存一个字面量，而很少直接使用字面量，可以通过变量对字面量进行描述">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-15T13:49:28.000Z">
-<meta property="article:modified_time" content="2021-10-15T14:30:46.777Z">
+<meta property="article:modified_time" content="2021-10-17T15:23:58.806Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="javaScript">
 <meta name="twitter:card" content="summary">
@@ -185,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-15 21:49:28 / 修改时间：22:30:46" itemprop="dateCreated datePublished" datetime="2021-10-15T21:49:28+08:00">2021-10-15</time>
+              <time title="创建时间：2021-10-15 21:49:28" itemprop="dateCreated datePublished" datetime="2021-10-15T21:49:28+08:00">2021-10-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-17 23:23:58" itemprop="dateModified" datetime="2021-10-17T23:23:58+08:00">2021-10-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -271,34 +277,22 @@
     a = &quot;变量&quot; //赋值
     console.log(a) //输出：&#39;变量&#39;
 </code></pre>
-<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><ul>
-<li>全局执行上下文<ul>
-<li>在执行全局代码前将window确定为全局执行上下文</li>
-<li>对全局数据进行预处理<ul>
-<li>var定义的全局变量==&gt;undefined, 添加为window的属性</li>
-<li>function声明的全局函数==&gt;赋值(fun), 添加为window的方法</li>
-<li>this==&gt;赋值(window)</li>
-</ul>
-</li>
-<li>开始执行全局代码</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>函数执行上下文<ul>
-<li>在调用函数, 准备执行函数体之前, 创建对应的函数执行上下文对象</li>
-<li>对局部数据进行预处理<ul>
-<li>形参变量==&gt;赋值(实参)==&gt;添加为执行上下文的属性</li>
-<li>arguments==&gt;赋值(实参列表), 添加为执行上下文的属性</li>
-<li>var定义的局部变量==&gt;undefined, 添加为执行上下文的属性</li>
-<li>function声明的函数 ==&gt;赋值(fun), 添加为执行上下文的方法</li>
-<li>this==&gt;赋值(调用函数的对象)</li>
-</ul>
-</li>
-<li>开始执行函数体代码</li>
-</ul>
-</li>
-</ul>
+<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><h4 id="全局执行上下文"><a href="#全局执行上下文" class="headerlink" title="全局执行上下文"></a>全局执行上下文</h4><pre><code>* 在执行全局代码前将window确定为全局执行上下文
+* 对全局数据进行预处理
+    * var定义的全局变量==&gt;undefined, 添加为window的属性
+    * function声明的全局函数==&gt;赋值(fun), 添加为window的方法
+    * this==&gt;赋值(window)
+* 开始执行全局代码
+</code></pre>
+<h4 id="函数执行上下文"><a href="#函数执行上下文" class="headerlink" title="函数执行上下文"></a>函数执行上下文</h4><pre><code>* 在调用函数, 准备执行函数体之前, 创建对应的函数执行上下文对象
+* 对局部数据进行预处理
+    * 形参变量==&gt;赋值(实参)==&gt;添加为执行上下文的属性
+    * arguments==&gt;赋值(实参列表), 添加为执行上下文的属性
+    * var定义的局部变量==&gt;undefined, 添加为执行上下文的属性
+    * function声明的函数 ==&gt;赋值(fun), 添加为执行上下文的方法
+    * this==&gt;赋值(调用函数的对象)
+* 开始执行函数体代码
+</code></pre>
 <h3 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h3><p>JavaScript 引擎创建了执行上下文栈来管理执行上下文。可以把执行上下文栈认为是一个存储函数调用的栈结构，遵循后进先出的原则。</p>
 <ul>
 <li>JavaScript 执行在单线程上，所有的代码都是排队执行，遵循后进先出的原则。</li>
@@ -443,7 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">传递参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">执行上下文与作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87"><span class="nav-number">2.1.</span> <span class="nav-text">变量提升与函数提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">2.2.</span> <span class="nav-text">执行上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88"><span class="nav-number">2.3.</span> <span class="nav-text">执行上下文栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.4.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="nav-number">2.5.</span> <span class="nav-text">作用域链</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">传递参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">执行上下文与作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87"><span class="nav-number">2.1.</span> <span class="nav-text">变量提升与函数提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">2.2.</span> <span class="nav-text">执行上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">2.2.1.</span> <span class="nav-text">全局执行上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">2.2.2.</span> <span class="nav-text">函数执行上下文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88"><span class="nav-number">2.3.</span> <span class="nav-text">执行上下文栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.4.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="nav-number">2.5.</span> <span class="nav-text">作用域链</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

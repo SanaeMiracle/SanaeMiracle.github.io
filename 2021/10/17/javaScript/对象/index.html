@@ -29,13 +29,15 @@
 <meta property="og:site_name" content="Fang">
 <meta property="og:description" content="对象（Object） 对象是JS中的引用数据类型 对象是一种复合数据类型，在对象中可以保存多个不同数据类型的属性 使用typeof检查一个对象时，会返回object">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/10/17/javaScript/%E5%AF%B9%E8%B1%A1/%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png">
+<meta property="og:image" content="http://example.com/images/javascript/%E5%8E%9F%E5%9E%8B%E9%93%BE1.png">
+<meta property="og:image" content="http://example.com/images/javascript/%E5%8E%9F%E5%9E%8B%E9%93%BE2.png">
+<meta property="og:image" content="http://example.com/images/javascript/%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png">
 <meta property="article:published_time" content="2021-10-17T15:13:23.000Z">
-<meta property="article:modified_time" content="2021-10-17T15:13:32.437Z">
+<meta property="article:modified_time" content="2021-10-17T15:33:08.212Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="javaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/10/17/javaScript/%E5%AF%B9%E8%B1%A1/%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png">
+<meta name="twitter:image" content="http://example.com/images/javascript/%E5%8E%9F%E5%9E%8B%E9%93%BE1.png">
 
 <link rel="canonical" href="http://example.com/2021/10/17/javaScript/%E5%AF%B9%E8%B1%A1/">
 
@@ -189,7 +191,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-10-17 23:13:23 / 修改时间：23:13:32" itemprop="dateCreated datePublished" datetime="2021-10-17T23:13:23+08:00">2021-10-17</time>
+              <time title="创建时间：2021-10-17 23:13:23 / 修改时间：23:33:08" itemprop="dateCreated datePublished" datetime="2021-10-17T23:13:23+08:00">2021-10-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -219,60 +221,15 @@
 </ul>
 <span id="more"></span>
 
-<ul>
-<li><p><strong>创建对象</strong></p>
-<ul>
+
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><ul>
 <li>方式一：<pre><code>  var obj = new Object();
 </code></pre>
 </li>
 <li>方式二：<pre><code>  var obj = &#123;&#125;;
 </code></pre>
 </li>
-</ul>
-</li>
-<li><p><strong>向对象中添加属性</strong></p>
-<ul>
-<li>语法：<pre><code>  对象.属性名 = 属性值;
-  对象[&quot;属性名&quot;] = 属性值;
-</code></pre>
-<ul>
-<li>对象的属性名没有任何要求，不需要遵守标识符的规范，<br>  但是在开发中，尽量按照标识符的要求去写。</li>
-<li>属性值也可以任意的数据类型。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>读取对象中的属性</strong></p>
-<ul>
-<li><p>语法：</p>
-<pre><code>  对象.属性名
-  对象[&quot;属性名&quot;]
-</code></pre>
-</li>
-<li><p>如果读取一个对象中没有的属性，它不会报错，而是返回一个undefined</p>
-</li>
-</ul>
-</li>
-<li><p><strong>删除对象中的属性</strong></p>
-<ul>
-<li>语法：<pre><code>  delete 对象.属性名
-  delete 对象[&quot;属性名&quot;]
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p><strong>使用in检查对象中是否含有指定属性</strong></p>
-<ul>
-<li><p>语法：</p>
-<pre><code>  &quot;属性名&quot; in 对象
-</code></pre>
-</li>
-<li><p>如果在对象中含有该属性，则返回true如果没有则返回false</p>
-</li>
-</ul>
-</li>
-<li><p><strong>使用对象字面量</strong>，在创建对象时直接向对象中添加属性</p>
-<ul>
+<li>方式三：<br>  使用对象字面量，在创建对象时直接向对象中添加属性<ul>
 <li>语法：<pre><code>  var obj = &#123;
                   属性名:属性值,
                   属性名:属性值,
@@ -281,10 +238,7 @@
           &#125;
 </code></pre>
 </li>
-</ul>
-</li>
-<li><p><strong>注</strong>：在什么时候使用 对象[“对象名”] 的方式</p>
-<ol>
+<li><strong>注</strong>：在什么时候使用 对象[“对象名”] 的方式<ol>
 <li>属性名包含特殊字符：_ 空格<pre><code> //需求: 添加一个属性: content-type: text/json
   //  p.content-type = &#39;text/json&#39; //不正确
    p[&#39;content-type&#39;] = &#39;text/json&#39;
@@ -299,15 +253,48 @@
 </li>
 </ol>
 </li>
-<li><p><strong>注2</strong>：</p>
-<ol>
+<li><strong>注2</strong>：<ol>
 <li>2个引用变量指向同一个对象, 通过一个引用变量修改对象内部数据, 另一个引用变量也看得见</li>
 <li>2个引用变量指向同一个对象,让一个引用变量指向另一个对象, 另一个引用变量还是指向原来的对象</li>
 </ol>
 </li>
 </ul>
+</li>
+</ul>
+<h3 id="向对象中添加属性"><a href="#向对象中添加属性" class="headerlink" title="向对象中添加属性"></a>向对象中添加属性</h3><ul>
+<li>语法：<pre><code>  对象.属性名 = 属性值;
+  对象[&quot;属性名&quot;] = 属性值;
+</code></pre>
 <ul>
-<li><strong>基本数据类型和引用数据类型</strong><ul>
+<li>对象的属性名没有任何要求，不需要遵守标识符的规范，<br>  但是在开发中，尽量按照标识符的要求去写。</li>
+<li>属性值也可以任意的数据类型。</li>
+</ul>
+</li>
+</ul>
+<h3 id="读取对象中的属性"><a href="#读取对象中的属性" class="headerlink" title="读取对象中的属性"></a>读取对象中的属性</h3><ul>
+<li><p>语法：</p>
+<pre><code>  对象.属性名
+  对象[&quot;属性名&quot;]
+</code></pre>
+</li>
+<li><p>如果读取一个对象中没有的属性，它不会报错，而是返回一个undefined</p>
+</li>
+</ul>
+<h3 id="删除对象中的属性"><a href="#删除对象中的属性" class="headerlink" title="删除对象中的属性"></a>删除对象中的属性</h3><ul>
+<li>语法：<pre><code>  delete 对象.属性名
+  delete 对象[&quot;属性名&quot;]
+</code></pre>
+</li>
+</ul>
+<h3 id="使用in检查对象中是否含有指定属性"><a href="#使用in检查对象中是否含有指定属性" class="headerlink" title="使用in检查对象中是否含有指定属性"></a>使用in检查对象中是否含有指定属性</h3><ul>
+<li><p>语法：</p>
+<pre><code>  &quot;属性名&quot; in 对象
+</code></pre>
+</li>
+<li><p>如果在对象中含有该属性，则返回true如果没有则返回false</p>
+</li>
+</ul>
+<h3 id="基本数据类型和引用数据类型"><a href="#基本数据类型和引用数据类型" class="headerlink" title="基本数据类型和引用数据类型"></a>基本数据类型和引用数据类型</h3><ul>
 <li>基本数据类型<pre><code>  String Number Boolean Null Undefined
 </code></pre>
 </li>
@@ -318,11 +305,7 @@
 <li>引用数据类型的数据，变量是保存的对象的引用（内存地址）。<br>  如果多个变量指向的是同一个对象，此时修改一个变量的属性，会影响其他的变量。</li>
 <li>比较两个变量时，对于基本数据类型，比较的就是值，<br>  对于引用数据类型比较的是地址，地址相同才相同</li>
 </ul>
-</li>
-</ul>
-<h3 id="创建对象的方式"><a href="#创建对象的方式" class="headerlink" title="创建对象的方式"></a>创建对象的方式</h3><ul>
-<li><p>方式一  <strong>Object构造函数模式</strong></p>
-<ul>
+<h3 id="创建对象的方式"><a href="#创建对象的方式" class="headerlink" title="创建对象的方式"></a>创建对象的方式</h3><h4 id="Object构造函数模式"><a href="#Object构造函数模式" class="headerlink" title="Object构造函数模式"></a>Object构造函数模式</h4><ul>
 <li>套路: 先创建空Object对象, 再动态添加属性/方法</li>
 <li>适用场景: 起始时不确定对象内部数据</li>
 <li>问题: 语句太多<pre><code>  var p = new Object()
@@ -334,9 +317,7 @@
 </code></pre>
 </li>
 </ul>
-</li>
-<li><p>方式二 <strong>对象字面量模式</strong></p>
-<ul>
+<h4 id="对象字面量模式"><a href="#对象字面量模式" class="headerlink" title="对象字面量模式"></a>对象字面量模式</h4><ul>
 <li>套路: 使用{}创建对象, 同时指定属性/方法</li>
 <li>适用场景: 起始时对象内部数据是确定的</li>
 <li>问题: 如果创建多个对象, 有重复代码<pre><code>  var p = &#123;
@@ -349,12 +330,13 @@
 </code></pre>
 </li>
 </ul>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><ul>
+<li><p>套路: 通过工厂函数动态创建对象并返回</p>
 </li>
-<li><p>方式三 <strong>工厂模式</strong></p>
-<ul>
-<li>套路: 通过工厂函数动态创建对象并返回</li>
-<li>适用场景: 需要创建多个对象</li>
-<li>问题: 对象没有一个具体的类型, 都是Object类型<pre><code>  function createPerson(name, age) &#123;
+<li><p>适用场景: 需要创建多个对象</p>
+</li>
+<li><p>问题: 对象没有一个具体的类型, 都是Object类型</p>
+<pre><code>  function createPerson(name, age) &#123;
       var p = &#123;
           name: name,
           age: age,
@@ -370,12 +352,13 @@
 </code></pre>
 </li>
 </ul>
+<h4 id="自定义构造函数模式"><a href="#自定义构造函数模式" class="headerlink" title="自定义构造函数模式"></a>自定义构造函数模式</h4><ul>
+<li><p>套路: 自定义构造函数, 通过new创建对象</p>
 </li>
-<li><p>方式四 <strong>自定义构造函数模式</strong></p>
-<ul>
-<li>套路: 自定义构造函数, 通过new创建对象</li>
-<li>适用场景: 需要创建多个类型确定的对象</li>
-<li>问题: 每个对象都有相同的数据, 浪费内存<pre><code>  function Person(name, age) &#123;
+<li><p>适用场景: 需要创建多个类型确定的对象</p>
+</li>
+<li><p>问题: 每个对象都有相同的数据, 浪费内存</p>
+<pre><code>  function Person(name, age) &#123;
       this.name = name
       this.age = age
       this.setName = function (name) &#123;
@@ -388,9 +371,7 @@
 </code></pre>
 </li>
 </ul>
-</li>
-<li><p>方式五 <strong>构造函数+原型的组合模式</strong></p>
-<ul>
+<h4 id="构造函数-原型的组合模式"><a href="#构造函数-原型的组合模式" class="headerlink" title="构造函数+原型的组合模式"></a>构造函数+原型的组合模式</h4><ul>
 <li><p>套路: 自定义构造函数, 属性在函数中初始化, 方法添加到原型上</p>
 </li>
 <li><p>适用场景: 需要创建多个类型确定的对象</p>
@@ -406,9 +387,7 @@
 </code></pre>
 </li>
 </ul>
-</li>
-</ul>
-<h3 id="原型-prototype"><a href="#原型-prototype" class="headerlink" title="原型 prototype"></a><strong>原型 prototype</strong></h3><p>我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个属性对应着一个对象，这个对象就是我们所谓的原型对象<br>如果函数作为普通函数调用prototype没有任何作用，当函数以构造函数的形式调用时，它所创建的对象中都会有一个隐含的属性，指向该构造函数的原型对象，我们可以通过 __proto__ 来访问该属性</p>
+<h2 id="原型-prototype"><a href="#原型-prototype" class="headerlink" title="原型 prototype"></a>原型 prototype</h2><p>我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个属性对应着一个对象，这个对象就是我们所谓的原型对象<br>如果函数作为普通函数调用prototype没有任何作用，当函数以构造函数的形式调用时，它所创建的对象中都会有一个隐含的属性，指向该构造函数的原型对象，我们可以通过 __proto__ 来访问该属性</p>
 <p>原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象，我们可以将对象中共有的内容，统一设置到原型对象中。</p>
 <p>当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用，如果没有则会去原型对象中寻找，如果找到则直接使用</p>
 <p>我们创建构造函数时，可以将这些对象共有的属性和方法，统一添加到构造函数的原型对象中，这样不用分别为每一个对象添加，也不会影响到全局作用域，就可以使每个对象都具有这些属性和方法了</p>
@@ -467,7 +446,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ul>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><ul>
 <li>每个构造函数都有一个原型对象，原型有一个属性（constructor）指回构造函数，而实例有一个内部指针（__proto__）指向原型，又原型也是另一个类型的实例，那就意味着这个原型本身有一个内部指针指向另一个原型，相应的另一个原型也有一个指针指向另一个构造函数。这样实例和原型之间就构造了一条原型链。</li>
 <li>任何函数的默认原型都是一个Object的实例，因此构造函数的原型对象都有__proto__指向Object.prototype（包括Function），而Object.__proto__ === null，因此Object.__proto__是整条原型链的末端。</li>
 <li><strong>注：</strong><ul>
@@ -492,6 +471,7 @@
 </ul>
 </li>
 </ul>
+<p><img src="/images/javascript/%E5%8E%9F%E5%9E%8B%E9%93%BE1.png" alt="原型链1"></p>
 <ul>
 <li>重写函数的prototype后，相当于prototype指向了一个新的对象<pre><code>      var Person = function()&#123;
           name: &quot;123&quot;
@@ -513,7 +493,8 @@
 </code></pre>
 </li>
 </ul>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h4 id="通过原型链继承"><a href="#通过原型链继承" class="headerlink" title="通过原型链继承"></a>通过原型链继承</h4><ul>
+<p><img src="/images/javascript/%E5%8E%9F%E5%9E%8B%E9%93%BE2.png" alt="原型链2"></p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="通过原型链继承"><a href="#通过原型链继承" class="headerlink" title="通过原型链继承"></a>通过原型链继承</h3><ul>
 <li>套路<ol>
 <li>定义父类型构造函数</li>
 <li>给父类型的原型添加方法</li>
@@ -552,7 +533,7 @@ console.log(instance2.name) // 2
 <p>在这个例子中， SuperType 构造函数定义了一个 colors 属性，其中包含一个数组（引用值）。每个 SuperType 的实例都会有自己的 colors 属性，包含自己的数组。但是，当 SubType 通过原型继承SuperType 后， SubType.prototype 变成了 SuperType 的一个实例，因而也获得了自己的 colors属性。这类似于创建了 SubType.prototype.colors 属性。最终结果是， SubType 的所有实例都会共享这个 colors 属性。</p>
 <p>导致SubType的每个实例引用 colors 属性, 都会从原型链中寻找SubType.prototype.colors 属性，相当于每个SubType都共用同一个 colors 属性。</p>
 <p>而对于基本数据类型来说，执行instance1.name += 2 这行代码，会在instance1 实例中添加name属性，然后在从SubType.prototype中读取name属性的值（2），最后 +2，等价于instance1.name = SubType.prototype.name + 2。而SubType.prototype.name的值没有改变，仅读取instance2.name的值时，instance2会从原型链中读取SubType.prototype.name的值（2） </p>
-<h4 id="盗用构造函数继承"><a href="#盗用构造函数继承" class="headerlink" title="盗用构造函数继承"></a>盗用构造函数继承</h4><ul>
+<h3 id="盗用构造函数继承"><a href="#盗用构造函数继承" class="headerlink" title="盗用构造函数继承"></a>盗用构造函数继承</h3><ul>
 <li>套路:<ol>
 <li>定义父类型构造函数</li>
 <li>定义子类型构造函数</li>
@@ -579,7 +560,7 @@ console.log(instance.name); // &quot;Nicholas&quot;;
 console.log(instance.age); // 29
 </code></pre>
 <p>盗用构造函数的一个优点就是可以在子类构造函数中向父类构造函数传参。<br>在 SubType 构造函数中调用 SuperType 构造函数时传入这个参数，实际上会在 SubType 的实例上定义 name 属性。</p>
-<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><ul>
+<h3 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3><ul>
 <li>原型链+盗用构造函数的组合继承<ul>
 <li>使用原型链继承原型上的属性和方法</li>
 <li>通过盗用构造函数继承实例属性</li>
@@ -617,8 +598,8 @@ instance2.sayName(); // &quot;Greg&quot;;
 instance2.sayAge(); // 27
 </code></pre>
 <p>在这个例子中， SuperType 构造函数定义了两个属性， name 和 colors，而它的原型上也定义了一个方法叫 sayName()。<br>SubType 构造函数调用了 SuperType 构造函数，传入了 name 参数，然后又定义了自己的属性 age。此外， SubType.prototype 也被赋值为 SuperType 的实例。原型赋值之后，又在这个原型上添加了新方法 sayAge()。<br>这样，就可以创建两个 SubType 实例，让这两个实例都有自己的属性，包括 colors，同时还共享相同的方法。</p>
-<p><img src="/2021/10/17/javaScript/%E5%AF%B9%E8%B1%A1/%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png" alt="组合继承"></p>
-<h3 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h3><ul>
+<p><img src="/images/javascript/%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF.png" alt="组合继承"></p>
+<h2 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h2><ul>
 <li>在JS中使用Date对象来表示一个时间</li>
 <li>创建一个Date对象<ul>
 <li>如果直接使用构造函数创建一个Date对象，则会封装为当前代码执行的时间<pre><code>  var date = new Date();  //封装此行代码执行的时间
@@ -689,7 +670,7 @@ instance2.sayAge(); // 27
 </ul>
 </li>
 </ul>
-<h3 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h3><ul>
+<h2 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h2><ul>
 <li>Math和其他的对象不同，它不是一个构造函数，它属于一个工具类不用创建对象，它里边封装了数学运算相关的属性和方法</li>
 </ul>
 <ul>
@@ -742,10 +723,13 @@ instance2.sayAge(); // 27
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/10/17/photo/" rel="prev" title="photo">
-      <i class="fa fa-chevron-left"></i> photo
+    <a href="/2021/10/15/javaScript/%E5%87%BD%E6%95%B0/" rel="prev" title="函数">
+      <i class="fa fa-chevron-left"></i> 函数
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/17/%E7%BA%BF%E7%A8%8B%E6%9C%BA%E5%88%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="next" title="线程机制与事件机制">
+      线程机制与事件机制 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -804,7 +788,7 @@ instance2.sayAge(); // 27
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%EF%BC%88Object%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">对象（Object）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">创建对象的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B-prototype"><span class="nav-number">1.2.</span> <span class="nav-text">原型 prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="nav-number">1.3.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">1.4.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF"><span class="nav-number">1.4.1.</span> <span class="nav-text">通过原型链继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%97%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF"><span class="nav-number">1.4.2.</span> <span class="nav-text">盗用构造函数继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="nav-number">1.4.3.</span> <span class="nav-text">组合继承</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.5.</span> <span class="nav-text">Date对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.6.</span> <span class="nav-text">Math对象</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%EF%BC%88Object%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">对象（Object）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">向对象中添加属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">读取对象中的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">删除对象中的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8in%E6%A3%80%E6%9F%A5%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%98%AF%E5%90%A6%E5%90%AB%E6%9C%89%E6%8C%87%E5%AE%9A%E5%B1%9E%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">使用in检查对象中是否含有指定属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">基本数据类型和引用数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.7.</span> <span class="nav-text">创建对象的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.1.</span> <span class="nav-text">Object构造函数模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.2.</span> <span class="nav-text">对象字面量模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.3.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.4.</span> <span class="nav-text">自定义构造函数模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.5.</span> <span class="nav-text">构造函数+原型的组合模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B-prototype"><span class="nav-number">2.</span> <span class="nav-text">原型 prototype</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="nav-number">3.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">4.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF"><span class="nav-number">4.1.</span> <span class="nav-text">通过原型链继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%97%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF"><span class="nav-number">4.2.</span> <span class="nav-text">盗用构造函数继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="nav-number">4.3.</span> <span class="nav-text">组合继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.</span> <span class="nav-text">Date对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math%E5%AF%B9%E8%B1%A1"><span class="nav-number">6.</span> <span class="nav-text">Math对象</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
