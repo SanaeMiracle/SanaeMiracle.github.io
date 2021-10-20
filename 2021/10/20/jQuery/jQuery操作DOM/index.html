@@ -22,22 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="事件对象 当事件的响应函数被触发时，浏览器每次都会将一个事件对象作为实参传递进响应函数,在事件对象中封装了当前事件相关的一切信息，比如：鼠标的坐标，键盘哪个按键被按下，鼠标滚轮滚动的方向…">
+  <meta name="description" content="jQuery操作DOMjQuery对象提供了许多修改DOM元素的功能">
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件对象">
-<meta property="og:url" content="http://example.com/2021/04/27/DOM/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:title" content="jQuery操作DOM元素">
+<meta property="og:url" content="http://example.com/2021/10/20/jQuery/jQuery%E6%93%8D%E4%BD%9CDOM/index.html">
 <meta property="og:site_name" content="Fang">
-<meta property="og:description" content="事件对象 当事件的响应函数被触发时，浏览器每次都会将一个事件对象作为实参传递进响应函数,在事件对象中封装了当前事件相关的一切信息，比如：鼠标的坐标，键盘哪个按键被按下，鼠标滚轮滚动的方向…">
+<meta property="og:description" content="jQuery操作DOMjQuery对象提供了许多修改DOM元素的功能">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-27T12:47:26.000Z">
-<meta property="article:modified_time" content="2021-04-27T12:48:06.494Z">
+<meta property="article:published_time" content="2021-10-20T12:40:59.000Z">
+<meta property="article:modified_time" content="2021-10-20T13:36:02.881Z">
 <meta property="article:author" content="Fangck">
-<meta property="article:tag" content="DOM">
-<meta property="article:tag" content="javaScript">
-<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="jQuery">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/04/27/DOM/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/">
+<link rel="canonical" href="http://example.com/2021/10/20/jQuery/jQuery%E6%93%8D%E4%BD%9CDOM/">
 
 
 <script id="page-configurations">
@@ -50,7 +48,7 @@
   };
 </script>
 
-  <title>事件对象 | Fang</title>
+  <title>jQuery操作DOM元素 | Fang</title>
   
 
 
@@ -165,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/27/DOM/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/20/jQuery/jQuery%E6%93%8D%E4%BD%9CDOM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -178,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          事件对象
+          jQuery操作DOM元素
         </h1>
 
         <div class="post-meta">
@@ -189,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-27 20:47:26 / 修改时间：20:48:06" itemprop="dateCreated datePublished" datetime="2021-04-27T20:47:26+08:00">2021-04-27</time>
+              <time title="创建时间：2021-10-20 20:40:59 / 修改时间：21:36:02" itemprop="dateCreated datePublished" datetime="2021-10-20T20:40:59+08:00">2021-10-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -197,7 +195,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DOM/" itemprop="url" rel="index"><span itemprop="name">DOM</span></a>
+                  <a href="/categories/jQuery/" itemprop="url" rel="index"><span itemprop="name">jQuery</span></a>
                 </span>
             </span>
 
@@ -212,271 +210,103 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><ul>
-<li>当事件的响应函数被触发时，浏览器每次都会将一个事件对象作为实参传递进响应函数,在事件对象中封装了当前事件相关的一切信息，比如：鼠标的坐标，键盘哪个按键被按下，鼠标滚轮滚动的方向…</li>
-</ul>
+        <h2 id="jQuery操作DOM"><a href="#jQuery操作DOM" class="headerlink" title="jQuery操作DOM"></a>jQuery操作DOM</h2><p>jQuery对象提供了许多修改DOM元素的功能</p>
 <span id="more"></span>
-
-<ul>
-<li><p>注:</p>
-<ul>
-<li><p>一般都会把形参写在事件对象的形参里，虽然不写也不会报错，但是获取方式会相对麻烦</p>
-</li>
-<li><p>在IE8中，响应函数被触发时，浏览器不会传递事件对象。在IE8及以下的浏览器中，是将事件对象作为window对象的属性保存的</p>
-<pre><code>  //写实参调用event
-  function eventTest(event)&#123;
-     event = event || window.event;
-  &#125;
-  
-  //不写实参调用event
-  function eventTest()&#123;
-      var event = window.event || arguments[0];
-  &#125;
-
-  //传入额外实参
-  function eventTest(a,b)&#123;
-      var event = window.event || arguments.callee.caller.arguments[0];
-  &#125;
-  //如果传入了参数却如第二种写法的话，则arguments中将会传入已经传入的参数，
-          //这时获取的arguments[0]就会是第一个传入的参数
+<h3 id="修改Text和HTML"><a href="#修改Text和HTML" class="headerlink" title="修改Text和HTML"></a>修改Text和HTML</h3><p>jQuery 对象的 text() 和 html() 方法分别获取节点的文本和原始 HTML 文本，例如，如下的 HTML 结构: </p>
+<pre><code>    &lt;!-- HTML结构 --&gt;
+    &lt;ul id=&quot;test-ul&quot;&gt;
+      &lt;li class=&quot;js&quot;&gt;111&lt;/li&gt;
+      &lt;li name=&quot;book&quot;&gt;&lt;span&gt;222&lt;/span&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+</code></pre>
+<p>分别获取文本和 HTML: </p>
+<pre><code>    console.log($(&quot;#test-ul li[name=book]&quot;).text()); // 222
+    console.log($(&quot;#test-ul li[name=book]&quot;).html()); // &lt;span&gt;222&lt;/span&gt;
+</code></pre>
+<p>如jQuery 的 API 实现了读写合一的功能，也就是: 无参数调用 text() 是获取文本，传入参数就变成设置文本，HTML 也是类似操作<br>例如：</p>
+<pre><code>    $(&quot;#test-ul li[name=book]&quot;).text(&quot;aaa&quot;) 
+</code></pre>
+<h3 id="修改CSS"><a href="#修改CSS" class="headerlink" title="修改CSS"></a>修改CSS</h3><ul>
+<li>jQuery 对象有“批量操作”的特点，对获取的DOM元素集进行操作</li>
+</ul>
+<p>例如下面的结构</p>
+<pre><code>    &lt;!-- HTML结构 --&gt;
+    &lt;ul id=&quot;test-css&quot;&gt;
+      &lt;li class=&quot;lang dy&quot;&gt;&lt;span&gt;JavaScript&lt;/span&gt;&lt;/li&gt;
+      &lt;li class=&quot;lang&quot;&gt;&lt;span&gt;Java&lt;/span&gt;&lt;/li&gt;
+      &lt;li class=&quot;lang dy&quot;&gt;&lt;span&gt;Python&lt;/span&gt;&lt;/li&gt;
+      &lt;li class=&quot;lang&quot;&gt;&lt;span&gt;Swift&lt;/span&gt;&lt;/li&gt;
+      &lt;li class=&quot;lang dy&quot;&gt;&lt;span&gt;Scheme&lt;/span&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+</code></pre>
+<p>可以用调用 jQuery 对象的 <code>css(&#39;name&#39;, &#39;value&#39;)</code> 方法，更改css样式。而获取css样式则是<code>css(&#39;name&#39;)</code></p>
+<pre><code>//更改li的class为dy的span元素
+    $(&quot;#test-css li.dy&gt;span&quot;)
+      .css(&quot;background-color&quot;, &quot;#bfa&quot;)
+      .css(&quot;color&quot;, &quot;red&quot;)
+</code></pre>
+<p>同时jQuery提供了修改css类的方法</p>
+<pre><code>    const div = $(&quot;#test-div&quot;);
+    div.hasClass(&quot;highlight&quot;); // false， class是否包含highlight
+    div.addClass(&quot;highlight&quot;); // 添加highlight这个class
+    div.removeClass(&quot;highlight&quot;); // 删除highlight这个class
+</code></pre>
+<h3 id="显示和隐藏-DOM"><a href="#显示和隐藏-DOM" class="headerlink" title="显示和隐藏 DOM"></a>显示和隐藏 DOM</h3><ul>
+<li><p>jQuery 直接提供show()和hide()方法</p>
+<pre><code>  const a = $(&quot;a&quot;);
+  a.hide(); // 隐藏
+  a.show(); // 显示
 </code></pre>
 </li>
 </ul>
+<p>注意，隐藏 DOM 节点并未改变 DOM 树的结构，它只影响 DOM 节点的显示。这和删除 DOM 节点是不同的。</p>
+<h3 id="获取-DOM-信息"><a href="#获取-DOM-信息" class="headerlink" title="获取 DOM 信息"></a>获取 DOM 信息</h3><ul>
+<li><p>利用 jQuery 对象的若干方法，我们直接可以获取 DOM 的高宽等信息，而无需针对不同浏览器编写特定代码:</p>
+<pre><code>  // 浏览器可视窗口大小:
+  $(window).width(); // 800
+  $(window).height(); // 600
+  
+  // HTML文档大小:
+  $(document).width(); // 800
+  $(document).height(); // 3500
+  
+  // 某个div的大小:
+  const div = $(&quot;#test-div&quot;);
+  div.width(); // 600
+  div.height(); // 300
+  div.width(400); // 设置CSS属性 width: 400px，是否生效要看CSS是否有效
+  div.height(&quot;200px&quot;); // 设置CSS属性 height: 200px，是否生效要看CSS是否有效
+</code></pre>
 </li>
-<li><p>基本事件对象</p>
-<ul>
-<li>静态变量</li>
-</ul>
+<li><p><code>attr()</code> 和 <code>removeAttr()</code> 方法用于操作 DOM 节点的属性:</p>
+<pre><code>  // &lt;div id=&quot;test-div&quot; name=&quot;Test&quot;&gt;...&lt;/div&gt;
+
+  const div = $(&quot;#test-div&quot;);
+  div.attr(&quot;data&quot;); // undefined, 属性不存在
+  div.attr(&quot;name&quot;); // &#39;Test&#39;
+  div.attr(&quot;name&quot;, &quot;Hello&quot;); // div的name属性变为&#39;Hello&#39;
+  div.removeAttr(&quot;name&quot;); // 删除name属性
+  div.attr(&quot;name&quot;); // undefined
+</code></pre>
 </li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>静态变量</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CAPTURING-PHASE</td>
-<td>当前事件阶段为捕获阶段(1)</td>
-</tr>
-<tr>
-<td>AT-TARGET</td>
-<td>当前事件是目标阶段,在评估目标事件(1)</td>
-</tr>
-<tr>
-<td>BUBBLING-PHASE</td>
-<td>当前的事件为冒泡阶段 (3)</td>
-</tr>
-</tbody></table>
+<li><p>prop() 方法和 attr() 类似，但是 HTML5 规定有一种属性在 DOM 节点中可以没有值，只有出现与不出现两种，例如: </p>
+<pre><code>  &lt;input id=&quot;test-radio&quot; type=&quot;radio&quot; name=&quot;test&quot; checked value=&quot;1&quot; /&gt;
+</code></pre>
+<p>等价于: </p>
+<pre><code>  &lt;input id=&quot;test-radio&quot; type=&quot;radio&quot; name=&quot;test&quot; checked=&quot;checked&quot; value=&quot;1&quot; /&gt;
+</code></pre>
+<p>   <code>attr()</code> 和 <code>prop()</code> 对于属性 checked 处理有所不同: </p>
+<pre><code>  const radio = $(&quot;#test-radio&quot;);
+  radio.attr(&quot;checked&quot;); // &#39;checked&#39;
+  radio.prop(&quot;checked&quot;); // true
+</code></pre>
+<p>一般来说</p>
 <ul>
-<li>属性</li>
+<li>attr(): 操作属性值为非布尔值的属性</li>
+<li>prop(): 专门操作属性值为布尔值的属性</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>bubbles</td>
-<td>返回布尔值，指示事件是否是起泡事件类型</td>
-</tr>
-<tr>
-<td>cancelable</td>
-<td>返回布尔值，指示事件是否可拥可取消的默认动作</td>
-</tr>
-<tr>
-<td>currentTarget</td>
-<td>返回其事件监听器触发该事件的元素</td>
-</tr>
-<tr>
-<td>eventPhase</td>
-<td>返回事件传播的当前阶段</td>
-</tr>
-<tr>
-<td>target</td>
-<td>返回触发此事件的元素（事件的目标节点）不兼容低版本IE，低版本IE用srcElement</td>
-</tr>
-<tr>
-<td>timeStamp</td>
-<td>返回事件生成的日期和时间</td>
-</tr>
-<tr>
-<td>type</td>
-<td>返回当前 Event 对象表示的事件的名称</td>
-</tr>
-</tbody></table>
-<ul>
-<li>方法 </li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>initEvent()</td>
-<td>初始化新创建的 Event 对象的属性</td>
-</tr>
-<tr>
-<td>preventDefault()</td>
-<td>通知浏览器不要执行与事件关联的默认动作</td>
-</tr>
-<tr>
-<td>stopPropagation()</td>
-<td>不再派发事件</td>
-</tr>
-</tbody></table>
-<ul>
-<li>目标事件对象</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>addEventListener()</td>
-<td>允许在目标事件中注册监听事件(IE8 = attachEvent())</td>
-</tr>
-<tr>
-<td>dispatchEvent()</td>
-<td>允许发送事件到监听器上 (IE8 = fireEvent())</td>
-</tr>
-<tr>
-<td>removeEventListener()</td>
-<td>运行一次注册在事件目标上的监听事件(IE8 = detachEvent())</td>
-</tr>
-</tbody></table>
-<ul>
-<li>事件监听对象</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>handleEvent()</td>
-<td>把任意对象注册为事件处理程序</td>
-</tr>
-</tbody></table>
-<ul>
-<li>文档事件对象</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>createEvent()</td>
-<td>返回新创建的event对象</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>鼠标/键盘事件对象</p>
-</li>
-<li><p>属性 </p>
 </li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>altKey</td>
-<td>返回当事件被触发时，”ALT” 是否被按下</td>
-</tr>
-<tr>
-<td>button</td>
-<td>返回当事件被触发时，哪个鼠标按钮被点击</td>
-</tr>
-<tr>
-<td>clientX</td>
-<td>返回当事件被触发时，鼠标指针的水平坐标</td>
-</tr>
-<tr>
-<td>clientY</td>
-<td>返回当事件被触发时，鼠标指针的垂直坐标</td>
-</tr>
-<tr>
-<td>ctrlKey</td>
-<td>返回当事件被触发时，”CTRL” 键是否被按下</td>
-</tr>
-<tr>
-<td>Location</td>
-<td>返回按键在设备上的位置</td>
-</tr>
-<tr>
-<td>charCode</td>
-<td>返回onkeypress事件触发键值的字母代码</td>
-</tr>
-<tr>
-<td>key</td>
-<td>在按下按键时返回按键的标识符</td>
-</tr>
-<tr>
-<td>keyCode</td>
-<td>返回onkeypress事件触发的键的值的字符代码，或者 onkeydown 或 onkeyup 事件的键的代码</td>
-</tr>
-<tr>
-<td>which</td>
-<td>返回onkeypress事件触发的键的值的字符代码，或者 onkeydown 或 onkeyup 事件的键的代码</td>
-</tr>
-<tr>
-<td>metaKey</td>
-<td>返回当事件被触发时，”meta” 键是否被按下</td>
-</tr>
-<tr>
-<td>relatedTarget</td>
-<td>返回与事件的目标节点相关的节点</td>
-</tr>
-<tr>
-<td>screenX</td>
-<td>返回当某个事件被触发时，鼠标指针的水平坐标</td>
-</tr>
-<tr>
-<td>screenY</td>
-<td>返回当某个事件被触发时，鼠标指针的垂直坐标</td>
-</tr>
-<tr>
-<td>shiftKey</td>
-<td>返回当事件被触发时，”SHIFT” 键是否被按下</td>
-</tr>
-</tbody></table>
-<ul>
-<li>方法</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>initMouseEvent()</td>
-<td>初始化鼠标事件对象的值</td>
-</tr>
-<tr>
-<td>initKeyboardEvent()</td>
-<td>初始化键盘事件对象的值</td>
-</tr>
-</tbody></table>
 
     </div>
 
@@ -486,9 +316,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/DOM/" rel="tag"># DOM</a>
-              <a href="/tags/javaScript/" rel="tag"># javaScript</a>
-              <a href="/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/tags/jQuery/" rel="tag"># jQuery</a>
           </div>
 
         
@@ -497,12 +325,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/27/DOM/DOM/" rel="prev" title="DOM">
-      <i class="fa fa-chevron-left"></i> DOM
+    <a href="/2021/10/19/jQuery/jQuery%E9%80%89%E6%8B%A9%E5%99%A8/" rel="prev" title="jQuery选择器">
+      <i class="fa fa-chevron-left"></i> jQuery选择器
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/10/15/javaScript/%E5%8F%98%E9%87%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="next" title="变量与作用域">
-      变量与作用域 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/10/20/jQuery/jQuery%E4%BF%AE%E6%94%B9DOM%E7%BB%93%E6%9E%84/" rel="next" title="jQuery修改DOM结构">
+      jQuery修改DOM结构 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -562,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">事件对象</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E6%93%8D%E4%BD%9CDOM"><span class="nav-number">1.</span> <span class="nav-text">jQuery操作DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9Text%E5%92%8CHTML"><span class="nav-number">1.1.</span> <span class="nav-text">修改Text和HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9CSS"><span class="nav-number">1.2.</span> <span class="nav-text">修改CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F-DOM"><span class="nav-number">1.3.</span> <span class="nav-text">显示和隐藏 DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-DOM-%E4%BF%A1%E6%81%AF"><span class="nav-number">1.4.</span> <span class="nav-text">获取 DOM 信息</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
