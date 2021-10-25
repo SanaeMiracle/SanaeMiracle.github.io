@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="jQuery操作DOMjQuery对象提供了许多修改DOM元素的功能">
+  <meta name="description" content="jQuery动画slideUp &#x2F; slideDown滑动动画: 通过不断改变元素的高度(height)实现  slideDown(): 带动画的展开 slideUp(): 带动画的收缩 slideToggle(): 带动画的切换展开&#x2F;收缩      const div &#x3D; $(&quot;#test-slide&quot;);          div.slideUp(3000); &#x2F;&#x2F; 在3秒">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery操作DOM元素">
-<meta property="og:url" content="http://example.com/2021/10/20/jQuery/jQuery%E6%93%8D%E4%BD%9CDOM/index.html">
+<meta property="og:title" content="jQuery动画">
+<meta property="og:url" content="http://example.com/2021/10/24/jQuery/jQuery%E5%8A%A8%E7%94%BB/index.html">
 <meta property="og:site_name" content="Fang">
-<meta property="og:description" content="jQuery操作DOMjQuery对象提供了许多修改DOM元素的功能">
+<meta property="og:description" content="jQuery动画slideUp &#x2F; slideDown滑动动画: 通过不断改变元素的高度(height)实现  slideDown(): 带动画的展开 slideUp(): 带动画的收缩 slideToggle(): 带动画的切换展开&#x2F;收缩      const div &#x3D; $(&quot;#test-slide&quot;);          div.slideUp(3000); &#x2F;&#x2F; 在3秒">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-20T12:40:59.000Z">
-<meta property="article:modified_time" content="2021-10-20T13:40:52.937Z">
+<meta property="article:published_time" content="2021-10-24T06:11:29.000Z">
+<meta property="article:modified_time" content="2021-10-24T12:20:37.489Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="jQuery">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/10/20/jQuery/jQuery%E6%93%8D%E4%BD%9CDOM/">
+<link rel="canonical" href="http://example.com/2021/10/24/jQuery/jQuery%E5%8A%A8%E7%94%BB/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>jQuery操作DOM元素 | Fang</title>
+  <title>jQuery动画 | Fang</title>
   
 
 
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/20/jQuery/jQuery%E6%93%8D%E4%BD%9CDOM/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/24/jQuery/jQuery%E5%8A%A8%E7%94%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          jQuery操作DOM元素
+          jQuery动画
         </h1>
 
         <div class="post-meta">
@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-10-20 20:40:59 / 修改时间：21:40:52" itemprop="dateCreated datePublished" datetime="2021-10-20T20:40:59+08:00">2021-10-20</time>
+              <time title="创建时间：2021-10-24 14:11:29 / 修改时间：20:20:37" itemprop="dateCreated datePublished" datetime="2021-10-24T14:11:29+08:00">2021-10-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,104 +210,90 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="jQuery操作DOM"><a href="#jQuery操作DOM" class="headerlink" title="jQuery操作DOM"></a>jQuery操作DOM</h2><p>jQuery对象提供了许多修改DOM元素的功能</p>
-<span id="more"></span>
-
-<h3 id="修改Text和HTML"><a href="#修改Text和HTML" class="headerlink" title="修改Text和HTML"></a>修改Text和HTML</h3><p>jQuery 对象的 text() 和 html() 方法分别获取节点的文本和原始 HTML 文本，例如，如下的 HTML 结构: </p>
-<pre><code>    &lt;!-- HTML结构 --&gt;
-    &lt;ul id=&quot;test-ul&quot;&gt;
-      &lt;li class=&quot;js&quot;&gt;111&lt;/li&gt;
-      &lt;li name=&quot;book&quot;&gt;&lt;span&gt;222&lt;/span&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-</code></pre>
-<p>分别获取文本和 HTML: </p>
-<pre><code>    console.log($(&quot;#test-ul li[name=book]&quot;).text()); // 222
-    console.log($(&quot;#test-ul li[name=book]&quot;).html()); // &lt;span&gt;222&lt;/span&gt;
-</code></pre>
-<p>如jQuery 的 API 实现了读写合一的功能，也就是: 无参数调用 text() 是获取文本，传入参数就变成设置文本，HTML 也是类似操作<br>例如：</p>
-<pre><code>    $(&quot;#test-ul li[name=book]&quot;).text(&quot;aaa&quot;) 
-</code></pre>
-<h3 id="修改CSS"><a href="#修改CSS" class="headerlink" title="修改CSS"></a>修改CSS</h3><ul>
-<li>jQuery 对象有“批量操作”的特点，对获取的DOM元素集进行操作</li>
-</ul>
-<p>例如下面的结构</p>
-<pre><code>    &lt;!-- HTML结构 --&gt;
-    &lt;ul id=&quot;test-css&quot;&gt;
-      &lt;li class=&quot;lang dy&quot;&gt;&lt;span&gt;JavaScript&lt;/span&gt;&lt;/li&gt;
-      &lt;li class=&quot;lang&quot;&gt;&lt;span&gt;Java&lt;/span&gt;&lt;/li&gt;
-      &lt;li class=&quot;lang dy&quot;&gt;&lt;span&gt;Python&lt;/span&gt;&lt;/li&gt;
-      &lt;li class=&quot;lang&quot;&gt;&lt;span&gt;Swift&lt;/span&gt;&lt;/li&gt;
-      &lt;li class=&quot;lang dy&quot;&gt;&lt;span&gt;Scheme&lt;/span&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-</code></pre>
-<p>可以用调用 jQuery 对象的 <code>css(&#39;name&#39;, &#39;value&#39;)</code> 方法，更改css样式。而获取css样式则是<code>css(&#39;name&#39;)</code></p>
-<pre><code>//更改li的class为dy的span元素
-    $(&quot;#test-css li.dy&gt;span&quot;)
-      .css(&quot;background-color&quot;, &quot;#bfa&quot;)
-      .css(&quot;color&quot;, &quot;red&quot;)
-</code></pre>
-<p>同时jQuery提供了修改css类的方法</p>
-<pre><code>    const div = $(&quot;#test-div&quot;);
-    div.hasClass(&quot;highlight&quot;); // false， class是否包含highlight
-    div.addClass(&quot;highlight&quot;); // 添加highlight这个class
-    div.removeClass(&quot;highlight&quot;); // 删除highlight这个class
-</code></pre>
-<h3 id="显示和隐藏-DOM"><a href="#显示和隐藏-DOM" class="headerlink" title="显示和隐藏 DOM"></a>显示和隐藏 DOM</h3><ul>
-<li><p>jQuery 直接提供show()和hide()方法</p>
-<pre><code>  const a = $(&quot;a&quot;);
-  a.hide(); // 隐藏
-  a.show(); // 显示
-</code></pre>
-</li>
-</ul>
-<p>注意，隐藏 DOM 节点并未改变 DOM 树的结构，它只影响 DOM 节点的显示。这和删除 DOM 节点是不同的。</p>
-<h3 id="获取-DOM-信息"><a href="#获取-DOM-信息" class="headerlink" title="获取 DOM 信息"></a>获取 DOM 信息</h3><ul>
-<li><p>利用 jQuery 对象的若干方法，我们直接可以获取 DOM 的高宽等信息，而无需针对不同浏览器编写特定代码:</p>
-<pre><code>  // 浏览器可视窗口大小:
-  $(window).width(); // 800
-  $(window).height(); // 600
-  
-  // HTML文档大小:
-  $(document).width(); // 800
-  $(document).height(); // 3500
-  
-  // 某个div的大小:
-  const div = $(&quot;#test-div&quot;);
-  div.width(); // 600
-  div.height(); // 300
-  div.width(400); // 设置CSS属性 width: 400px，是否生效要看CSS是否有效
-  div.height(&quot;200px&quot;); // 设置CSS属性 height: 200px，是否生效要看CSS是否有效
-</code></pre>
-</li>
-<li><p><code>attr()</code> 和 <code>removeAttr()</code> 方法用于操作 DOM 节点的属性:</p>
-<pre><code>  // &lt;div id=&quot;test-div&quot; name=&quot;Test&quot;&gt;...&lt;/div&gt;
-
-  const div = $(&quot;#test-div&quot;);
-  div.attr(&quot;data&quot;); // undefined, 属性不存在
-  div.attr(&quot;name&quot;); // &#39;Test&#39;
-  div.attr(&quot;name&quot;, &quot;Hello&quot;); // div的name属性变为&#39;Hello&#39;
-  div.removeAttr(&quot;name&quot;); // 删除name属性
-  div.attr(&quot;name&quot;); // undefined
-</code></pre>
-</li>
-<li><p>prop() 方法和 attr() 类似，但是 HTML5 规定有一种属性在 DOM 节点中可以没有值，只有出现与不出现两种，例如: </p>
-<pre><code>  &lt;input id=&quot;test-radio&quot; type=&quot;radio&quot; name=&quot;test&quot; checked value=&quot;1&quot; /&gt;
-</code></pre>
-<p>等价于: </p>
-<pre><code>  &lt;input id=&quot;test-radio&quot; type=&quot;radio&quot; name=&quot;test&quot; checked=&quot;checked&quot; value=&quot;1&quot; /&gt;
-</code></pre>
-<p>   <code>attr()</code> 和 <code>prop()</code> 对于属性 checked 处理有所不同: </p>
-<pre><code>  const radio = $(&quot;#test-radio&quot;);
-  radio.attr(&quot;checked&quot;); // &#39;checked&#39;
-  radio.prop(&quot;checked&quot;); // true
-</code></pre>
-<p>一般来说</p>
+        <h2 id="jQuery动画"><a href="#jQuery动画" class="headerlink" title="jQuery动画"></a>jQuery动画</h2><h3 id="slideUp-slideDown"><a href="#slideUp-slideDown" class="headerlink" title="slideUp / slideDown"></a>slideUp / slideDown</h3><p><strong>滑动动画</strong>: 通过不断改变元素的高度(height)实现</p>
 <ul>
-<li>attr(): 操作属性值为非布尔值的属性</li>
-<li>prop(): 专门操作属性值为布尔值的属性</li>
+<li><code>slideDown()</code>: 带动画的展开</li>
+<li><code>slideUp()</code>: 带动画的收缩</li>
+<li><code>slideToggle()</code>: 带动画的切换展开/收缩</li>
 </ul>
+<pre><code>    const div = $(&quot;#test-slide&quot;);
+    
+    div.slideUp(3000); // 在3秒钟内逐渐向上消失
+</code></pre>
+<p>时间以毫秒为单位，但也可以是 ‘slow(600)’，’normal(400)’，’fast(200)’ 这些字符串，无参调用就是’normal’</p>
+<pre><code>    const div = $(&quot;#test-show-hide&quot;);
+    
+    div.slideDown(&quot;slow&quot;); // 在600ms内逐渐滑出
+</code></pre>
+<h3 id="fadeIn-fadeOut"><a href="#fadeIn-fadeOut" class="headerlink" title="fadeIn / fadeOut"></a>fadeIn / fadeOut</h3><p><strong>淡入淡出</strong>: 不断改变元素的透明度(opacity)来实现的</p>
+<ul>
+<li><code>fadeIn()</code>: 带动画的显示</li>
+<li><code>fadeOut()</code>: 带动画隐藏</li>
+<li><code>fadeToggle()</code>: 带动画切换显示/隐藏</li>
+</ul>
+<pre><code>    const div = $(&#39;#test-fade&#39;);
+    
+    div.fadeOut(&#39;slow&#39;); // 在 0.6 秒内淡出
+    fadeOut(&#39;slow&#39;)  fadeIn(&#39;slow&#39;)  fadeToggle(&#39;slow&#39;)
+</code></pre>
+<h3 id="show-hide"><a href="#show-hide" class="headerlink" title="show / hide"></a>show / hide</h3><p><strong>显示隐藏</strong>，默认没有动画, 动画通过改变(opacity/height/width)</p>
+<ul>
+<li><p><code>show()</code>: (不)带动画的显示</p>
+</li>
+<li><p><code>hide()</code>: (不)带动画的隐藏</p>
+</li>
+<li><p><code>toggle()</code>: (不)带动画的切换显示/隐藏</p>
+<pre><code>  const div = $(&quot;#test-show-hide&quot;);
+  
+  div.hide(3000); // 在3秒钟内逐渐消失
+  
+  div.show(&quot;slow&quot;); // 在600ms内逐渐显示
+</code></pre>
 </li>
 </ul>
+<h3 id="自定义动画"><a href="#自定义动画" class="headerlink" title="自定义动画"></a>自定义动画</h3><p>jQuery动画本质 : 在指定时间内不断改变元素样式值来实现的</p>
+<ul>
+<li><code>animate()</code>: 自定义动画效果的动画</li>
+<li><code>stop()</code>: 停止动画</li>
+</ul>
+<p><code>animate()</code>，它可以实现任意动画效果，我们需要传入的参数就是 DOM 元素<strong>最终的 CSS 状态</strong>和<strong>时间</strong>，jQuery 在时间段内不断调整 CSS 直到达到我们设定的值:</p>
+<pre><code>    const $div = $(&quot;#test-animate&quot;);
+    //3s内透明度变为0.25，宽高变为256px
+    $div.animate(
+      &#123;
+        opacity: 0.25,
+        width: &quot;256px&quot;,
+        height: 256, //此处也可不写单位，传入数值256，单位默认为px 
+      &#125;,3000)
+</code></pre>
+<p>通过链式调用能做到动画实现的先后顺序</p>
+<pre><code>    const $div = $(&quot;#test-animate&quot;)
+    //宽度先变为200px，高度再变为200px
+    $div.animate(&#123;
+        width: 200
+      &#125;, 1000)
+      .animate(&#123;
+        height: 200
+      &#125;, 1000)
+</code></pre>
+<p><code>animate()</code> 还可以再传入一个回调函数，当动画结束时，该函数将被调用</p>
+<pre><code>    const $div = $(&quot;#test-animate&quot;);
+    
+    $div.animate(
+      &#123;
+        opacity: 0.25,
+        width: 256,
+        height: 256
+      &#125;,
+      3000,
+      function () &#123;
+        console.log(&quot;动画已结束&quot;)
+        // 恢复至初始状态:
+        $(this).css(&quot;opacity&quot;, &quot;1.0&quot;)
+            .css(&quot;width&quot;, &quot;128px&quot;)
+            .css(&quot;height&quot;, &quot;128px&quot;)
+      &#125;)
+</code></pre>
 
     </div>
 
@@ -326,12 +312,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/10/19/jQuery/jQuery%E9%80%89%E6%8B%A9%E5%99%A8/" rel="prev" title="jQuery选择器">
-      <i class="fa fa-chevron-left"></i> jQuery选择器
+    <a href="/2021/10/21/jQuery/jQuery%E4%BA%8B%E4%BB%B6/" rel="prev" title="jQuery事件">
+      <i class="fa fa-chevron-left"></i> jQuery事件
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/10/20/jQuery/jQuery%E4%BF%AE%E6%94%B9DOM%E7%BB%93%E6%9E%84/" rel="next" title="jQuery修改DOM结构">
-      jQuery修改DOM结构 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/10/24/jQuery/jQuery%E6%8F%92%E4%BB%B6/" rel="next" title="jQuery插件">
+      jQuery插件 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -391,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E6%93%8D%E4%BD%9CDOM"><span class="nav-number">1.</span> <span class="nav-text">jQuery操作DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9Text%E5%92%8CHTML"><span class="nav-number">1.1.</span> <span class="nav-text">修改Text和HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9CSS"><span class="nav-number">1.2.</span> <span class="nav-text">修改CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F-DOM"><span class="nav-number">1.3.</span> <span class="nav-text">显示和隐藏 DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-DOM-%E4%BF%A1%E6%81%AF"><span class="nav-number">1.4.</span> <span class="nav-text">获取 DOM 信息</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E5%8A%A8%E7%94%BB"><span class="nav-number">1.</span> <span class="nav-text">jQuery动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slideUp-slideDown"><span class="nav-number">1.1.</span> <span class="nav-text">slideUp &#x2F; slideDown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fadeIn-fadeOut"><span class="nav-number">1.2.</span> <span class="nav-text">fadeIn &#x2F; fadeOut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show-hide"><span class="nav-number">1.3.</span> <span class="nav-text">show &#x2F; hide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A8%E7%94%BB"><span class="nav-number">1.4.</span> <span class="nav-text">自定义动画</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
