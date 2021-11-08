@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="jQuery动画slideUp &#x2F; slideDown滑动动画: 通过不断改变元素的高度(height)实现  slideDown(): 带动画的展开 slideUp(): 带动画的收缩 slideToggle(): 带动画的切换展开&#x2F;收缩      const div &#x3D; $(&quot;#test-slide&quot;);          div.slideUp(3000); &#x2F;&#x2F; 在3秒">
+  <meta name="description" content="jQuery动画slideUp &#x2F; slideDown滑动动画: 通过不断改变元素的高度(height)实现  slideDown(): 带动画的展开  slideUp(): 带动画的收缩  slideToggle(): 带动画的切换展开&#x2F;收缩">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery动画">
 <meta property="og:url" content="http://example.com/2021/10/24/jQuery/jQuery%E5%8A%A8%E7%94%BB/index.html">
 <meta property="og:site_name" content="Fang">
-<meta property="og:description" content="jQuery动画slideUp &#x2F; slideDown滑动动画: 通过不断改变元素的高度(height)实现  slideDown(): 带动画的展开 slideUp(): 带动画的收缩 slideToggle(): 带动画的切换展开&#x2F;收缩      const div &#x3D; $(&quot;#test-slide&quot;);          div.slideUp(3000); &#x2F;&#x2F; 在3秒">
+<meta property="og:description" content="jQuery动画slideUp &#x2F; slideDown滑动动画: 通过不断改变元素的高度(height)实现  slideDown(): 带动画的展开  slideUp(): 带动画的收缩  slideToggle(): 带动画的切换展开&#x2F;收缩">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-24T06:11:29.000Z">
-<meta property="article:modified_time" content="2021-11-06T08:47:35.379Z">
+<meta property="article:modified_time" content="2021-11-08T14:33:42.811Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="jQuery">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-06 16:47:35" itemprop="dateModified" datetime="2021-11-06T16:47:35+08:00">2021-11-06</time>
+                <time title="修改时间：2021-11-08 22:33:42" itemprop="dateModified" datetime="2021-11-08T22:33:42+08:00">2021-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,14 +218,19 @@
       
         <h1 id="jQuery动画"><a href="#jQuery动画" class="headerlink" title="jQuery动画"></a>jQuery动画</h1><h2 id="slideUp-slideDown"><a href="#slideUp-slideDown" class="headerlink" title="slideUp / slideDown"></a>slideUp / slideDown</h2><p><strong>滑动动画</strong>: 通过不断改变元素的高度(height)实现</p>
 <ul>
-<li><code>slideDown()</code>: 带动画的展开</li>
-<li><code>slideUp()</code>: 带动画的收缩</li>
-<li><code>slideToggle()</code>: 带动画的切换展开/收缩</li>
-</ul>
-<pre><code>    const div = $(&quot;#test-slide&quot;);
-    
-    div.slideUp(3000); // 在3秒钟内逐渐向上消失
+<li><p><code>slideDown()</code>: 带动画的展开</p>
+</li>
+<li><p><code>slideUp()</code>: 带动画的收缩</p>
+</li>
+<li><p><code>slideToggle()</code>: 带动画的切换展开/收缩</p>
+<span id="more"></span>
+
+<pre><code>  const div = $(&quot;#test-slide&quot;);
+  
+  div.slideUp(3000); // 在3秒钟内逐渐向上消失
 </code></pre>
+</li>
+</ul>
 <p>时间以毫秒为单位，但也可以是 ‘slow(600)’，’normal(400)’，’fast(200)’ 这些字符串，无参调用就是’normal’</p>
 <pre><code>    const div = $(&quot;#test-show-hide&quot;);
     

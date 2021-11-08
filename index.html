@@ -182,7 +182,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-11-08 20:57:08 / 修改时间：21:58:23" itemprop="dateCreated datePublished" datetime="2021-11-08T20:57:08+08:00">2021-11-08</time>
+              <time title="创建时间：2021-11-08 20:57:08 / 修改时间：22:34:02" itemprop="dateCreated datePublished" datetime="2021-11-08T20:57:08+08:00">2021-11-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -206,229 +206,14 @@
 
       
           <h1 id="函数的扩展"><a href="#函数的扩展" class="headerlink" title="函数的扩展"></a>函数的扩展</h1><h2 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a>函数参数的默认值</h2><p>ES6 允许给函数参数赋值初始值</p>
-<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>通过给形参赋初始值，具有默认值的参数, 一般位置要靠后(潜规则)，<strong>只有当传入的参数的值为<code>undefined</code>时才会使用默认值</strong></p>
-<pre><code>    function log(x, y = &quot;World&quot;) &#123;
-      console.log(x, y)
-    &#125;
-    
-    log(&quot;Hello&quot;) // Hello World
-    log(&quot;Hello&quot;, &quot;China&quot;) // Hello China
-    log(&quot;Hello&quot;, &quot;&quot;) // Hello
-</code></pre>
-<p>使用参数默认值时，函数不能有同名参数</p>
-<pre><code>    // 不报错，但是先传入的同名参数会被后面覆盖
-    function fun(x, x, y) &#123;
-        // ...
-    &#125;
-
-    // 报错
-    function fun(x, x, y = 1) &#123;
-        // ...
-    &#125;
-    // SyntaxError: Duplicate parameter name not allowed in this context
-</code></pre>
-<h3 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h3><p>参数默认值可以与解构赋值的默认值，结合起来使用</p>
-<pre><code>    function fun(&#123; x, y = 5 &#125;) &#123;
-      console.log(x, y);
-    &#125;
-    
-    fun(&#123;&#125;); // undefined 5
-    fun(&#123; x: 1 &#125;); // 1 5
-    fun(&#123; x: 1, y: 2 &#125;); // 1 2
-    fun(); // TypeError: Cannot read property &#39;x&#39; of undefined
-</code></pre>
-<p>上面代码只使用了对象的解构赋值默认值，没有使用函数参数的默认值</p>
-<p>只有当函数<code>fun</code>的参数是一个对象时，变量<code>x</code>和<code>y</code>才会通过解构赋值生成。如果函数<code>fun</code>调用时没提供参数，变量<code>x</code>和<code>y</code>就不会生成，从而报错</p>
-<pre><code>    function fun(&#123; x, y = 5 &#125; = &#123;&#125;) &#123;
-      console.log(x, y)
-    &#125;
-    
-    fun() // undefined 5
-</code></pre>
-<p>上面代码指定，如果没有提供参数，函数<code>fun</code>的参数默认为一个空对象</p>
-<p>例：</p>
-<pre><code>    function fetch(url, &#123; body = &quot;&quot;, method = &quot;GET&quot;, headers = &#123;&#125; &#125;) &#123;
-      console.log(method);
-    &#125;
-    
-    fetch(&quot;https://example.com&quot;, &#123;&#125;);
-    // &quot;GET&quot;
-    
-    fetch(&quot;https://example.com&quot;);
-    // 报错
-</code></pre>
-<p>上面代码中，如果函数<code>fetch</code>的第二个参数是一个对象，就可以为它的三个属性设置默认值。<br>这种写法不能省略第二个参数，如果结合函数参数的默认值，就可以省略第二个参数。这时，就出现了双重默认值。</p>
-<pre><code>    function fetch(url, &#123; body = &quot;&quot;, method = &quot;GET&quot;, headers = &#123;&#125; &#125; = &#123;&#125;) &#123;
-      console.log(method);
-    &#125;
-    
-    fetch(&quot;https://example.com&quot;);
-    // &quot;GET&quot;
-</code></pre>
-<p>上面代码中，函数<code>fetch</code>没有第二个参数时，函数参数的默认值就会生效，然后才是解构赋值的默认值生效，变量<code>method</code>才会取到默认值<code>GET</code></p>
-<p>问：以下代码有何区别</p>
-<pre><code>    // 写法一
-    function m1(&#123; x = 0, y = 0 &#125; = &#123;&#125;) &#123;
-      return [x, y]
-    &#125;
-    
-    // 写法二
-    function m2(&#123; x, y &#125; = &#123; x: 0, y: 0 &#125;) &#123;
-      return [x, y]
-    &#125;
-</code></pre>
-<p>上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值<br>写法二函数参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值</p>
-<pre><code>    // 函数没有参数的情况
-    m1() // [0, 0]
-    m2() // [0, 0]
-    
-    // x 和 y 都有值的情况
-    m1(&#123; x: 3, y: 8 &#125;) // [3, 8]
-    m2(&#123; x: 3, y: 8 &#125;) // [3, 8]
-    
-    // x 有值，y 无值的情况
-    m1(&#123; x: 3 &#125;) // [3, 0]
-    m2(&#123; x: 3 &#125;) // [3, undefined]
-    
-    // x 和 y 都无值的情况
-    m1(&#123;&#125;) // [0, 0];
-    m2(&#123;&#125;) // [undefined, undefined]
-</code></pre>
-<h3 id="函数的-length-属性"><a href="#函数的-length-属性" class="headerlink" title="函数的 length 属性"></a>函数的 length 属性</h3><p>指定了默认值以后，函数的<code>length</code>属性，将返回没有指定默认值的参数个数</p>
-<pre><code>    (function (a) &#123;&#125;).length // 1
-    (function (a = 5) &#123;&#125;).length // 0
-    (function (a, b, c = 5) &#123;&#125;).length // 2
-</code></pre>
-<p>因为<code>length</code>属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了</p>
-<p>如果设置了默认值的参数不是尾参数，那么<code>length</code>属性也不再计入后面的参数了</p>
-<pre><code>    (function (a, b = 1, c) &#123;&#125;).length  // 1
-</code></pre>
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域(context)。等到初始化结束，这个作用域就会消失</p>
-<pre><code>    let x = 1
-    
-    function fun(x, y = x) &#123;
-          console.log(y)
-    &#125;
-    
-    fun(2) // 2
-</code></pre>
-<p>上面代码中，参数<code>y</code>的默认值等于<code>x</code>，调用<code>fun()</code>时，此时形成了封闭的作用域，默认值<code>x</code>指向第一个参数<code>x</code>，也就是2</p>
-<pre><code>    let x = 1
-
-    function fun(y = x) &#123;
-        let x = 3
-        console.log(y)
-    &#125;
-
-    fun() // 1
-</code></pre>
-<p>上面代码中，函数f调用时，参数<code>y = x</code>形成一个单独的作用域。这个作用域里面，变量<code>x</code>本身没有定义，所以指向外层的全局变量<code>x</code>。函数调用时，函数体内部的局部变量<code>x</code>影响不到默认值变量<code>x</code>。 </p>
-<p>如果此时，全局变量<code>x</code>不存在，就会报错</p>
-<h2 id="rest-参数"><a href="#rest-参数" class="headerlink" title="rest 参数"></a>rest 参数</h2><p>ES6 引入 <code>rest</code> 参数(形式为…变量名)，用于获取函数的多余参数，这样就不需要使用<code>arguments</code>对象了。<br><code>rest</code> 参数搭配的变量是一个数组，该变量将多余的参数放入数组中</p>
-<pre><code>    // ES5 获取实参的方式
-    function fun()&#123;
-        console.log(arguments)
-    &#125;
-    fun(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)
-
-    // rest 参数
-    function fun(x, ...args)&#123;
-        console.log(args);// filter some every map 
-    &#125;
-    fun(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;) // b c
-</code></pre>
-<p><code>rest</code> 参数必须要放到参数最后，否则会报错</p>
-<pre><code>    function fun(a, ...args, b) &#123;&#125;
-    // SyntaxError: Rest parameter must be last formal parameter
-</code></pre>
-<p>函数的<code>length</code>属性，不包括 <code>rest</code> 参数</p>
-<pre><code>    (function (...args) &#123;&#125;).length // 0
-    (function (a, b, ...args) &#123;&#125;).length // 2
-</code></pre>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>ES6 允许使用“箭头”(<code>=&gt;</code>)定义函数</p>
-<h3 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h3><pre><code>    let fun = function (a) &#123;
-        return a * a
-    &#125;
-
-    // 等价于
-    let fun = (a) =&gt; &#123;
-        return a * a
-    &#125;
-</code></pre>
-<p>如果箭头函数当形参有且只有一个的时候，可以省略<code>()</code><br>当代码体只有一条语句的时候, 可以省略<code>&#123;&#125;</code>，但此时 <code>return</code> 必须省略，<code>return</code> 返回该条语句执行结果</p>
-<pre><code>    let fun = (a) =&gt; &#123;
-        return a * a
-    &#125;
-
-    //等价于
-    let fun = a =&gt; a * a
-</code></pre>
-<p>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错</p>
-<pre><code>    // 报错
-    let getTempItem = id =&gt; &#123; id: id, name: &quot;Temp&quot; &#125;
-    
-    // 不报错
-    let getTempItem = id =&gt; (&#123; id: id, name: &quot;Temp&quot; &#125;)
-</code></pre>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
-<li><p><code>this</code> 是静态的. <code>this</code> 始终指向函数声明时所在作用域下的 <code>this</code> 的值</p>
-<pre><code> function getName() &#123;
-     console.log(this.name)
- &#125;
-
- let getName2 = () =&gt; &#123;
-     console.log(this.name)
- &#125;
-
- window.name = &quot;window&quot;
- const obj = &#123;
-     name: &quot;obj&quot;
- &#125;
- 
- // 直接调用
- getName() //window 
- getName2() //window
-
- // call 方法调用
- getName.call(obj) //obj
- getName2.call(obj) //window
-</code></pre>
-<p> 上面代码中都是定义在全局作用域中，而箭头函数<code>getName2()</code> this始终指向全局作用域，不随 <code>call()</code> 的调用而改变</p>
-<p> 如在回调函数中使用</p>
-<pre><code> let div = document.getElementById(&quot;test-div&quot;)
- div.onclick = function () &#123;
-     // setTimeout(function () &#123;
-     //     console.log(this) // 此时this是window
-     //     this.style.background = &quot;red&quot;
-     // &#125;,2000)
-
-     setTimeout(() =&gt; &#123;
-         // 此时this是外部作用域div
-         this.style.background = &quot;red&quot;
-     &#125;, 2000)
- &#125;
-</code></pre>
-</li>
-<li><p>不能作为构造实例化对象,也就是说，不可以使用new命令，否则会抛出一个错误</p>
-<pre><code>  let Person = (name, age) =&gt; &#123;
-      this.name = name
-      this.age = age
-  &#125;
-  let me = new Person(&#39;tom&#39;,30) 
-  //Uncaught TypeError: Person is not a constructor
-  console.log(me)
-</code></pre>
-</li>
-<li><p>不能使用 <code>arguments</code> 变量,该对象在函数体内不存在。如果要用，可以用 <code>rest</code> 参数代替</p>
-<pre><code>  let fun = () =&gt; &#123;
-      console.log(arguments);
-  &#125;
-  fun(1, 2)
-  // ReferenceError: arguments is not defined
-</code></pre>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/08/ES6/%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A9%E5%B1%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -527,10 +312,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-11-06 13:57:08 / 修改时间：16:44:59" itemprop="dateCreated datePublished" datetime="2021-11-06T13:57:08+08:00">2021-11-06</time>
+              <time title="创建时间：2021-11-06 13:57:08" itemprop="dateCreated datePublished" datetime="2021-11-06T13:57:08+08:00">2021-11-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-08 22:33:54" itemprop="dateModified" datetime="2021-11-08T22:33:54+08:00">2021-11-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -553,139 +344,14 @@
 
       
           <h1 id="变量的解构赋值"><a href="#变量的解构赋值" class="headerlink" title="变量的解构赋值"></a>变量的解构赋值</h1><p>ES6 允许按照一定模式从数组和对象中提取值，对变量进行赋值，这被称为解构赋值。</p>
-<h2 id="数组的解构赋值"><a href="#数组的解构赋值" class="headerlink" title="数组的解构赋值"></a>数组的解构赋值</h2><pre><code>    const ARR = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
-    let [a, b, c] = ARR
-    //等价于 let [a, b, c] = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
-    console.log(a, b, c) // 1 2 3 
-</code></pre>
-<p>上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。</p>
-<p>本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。</p>
-<p>下面是一些使用嵌套数组进行解构的例子</p>
-<pre><code>    let [, , third] = [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]
-    console.log(third) // &quot;baz&quot;
-
-    let [x, , y] = [1, 2, 3]
-    console.log(x) // 1
-    console.log(y) // 3
-    
-    // ...x 为匹配剩余项
-    let [head, ...tail] = [1, 2, 3, 4]
-    console.log(head) // 1
-    console.log(tail) // [2, 3, 4]
-
-    let [x, y, ...z] = [&quot;a&quot;]
-    console.log(x) // &quot;a&quot;
-    console.log(y) // undefined
-    console.log(z) // []
-</code></pre>
-<p>如果解构不成功，变量的值就等于undefined。</p>
-<pre><code>    let [foo] = []
-    let [bar, foo] = [1]
-    // foo的值都为undefined
-</code></pre>
-<p>解构赋值允许指定默认值。 </p>
-<pre><code>    let [foo = true] = []
-    console.log(foo) // true
-    
-    let [x, y = &quot;b&quot;] = [&quot;a&quot;]; // x=&#39;a&#39;, y=&#39;b&#39;
-    let [x, y = &quot;b&quot;] = [&quot;a&quot;, undefined]; // x=&#39;a&#39;, y=&#39;b&#39;
-</code></pre>
-<p>注意，ES6 内部使用严格相等运算符(===)，判断一个位置是否有值。所以，只有当一个数组成员严格等于undefined，默认值才会生效。 </p>
-<pre><code>    let [x = 1] = [undefined]
-    console.log(x) // 1
-    
-    let [y = 1] = [null];
-    console.log(y) // null
-</code></pre>
-<h2 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h2><pre><code>    const obj = &#123;
-        name: &quot;tom&quot;,
-        age: 18,
-        fun: function () &#123;
-            console.log(&quot;i am tom&quot;)
-        &#125;
-    &#125;
-    let &#123;name, age, fun&#125; = obj
-    console.log(name, age, fun) // tom 18 function()
-    fun() // i am tom
-</code></pre>
-<p>对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值，否则为undefined</p>
-<pre><code>    let &#123;age, sex&#125; = obj
-    console.log(age, sex) //18 undefined
-</code></pre>
-<p>如果变量名与属性名不一致，必须写成下面这样:</p>
-<pre><code>    let &#123; foo: baz &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;
-    console.log(baz) // aaa
-    console.log(foo) //Uncaught ReferenceError: foo is not defined
-</code></pre>
-<p>也就是说，对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量，即 <code>foo</code> 是匹配的模式， <code>baz</code> 才是变量。真正被赋值的是变量 <code>baz</code> ，而不是模式 <code>foo</code></p>
-<p>对象的解构也可以指定默认值,默认值生效的条件是，对象的属性值严格等于<code>undefined</code></p>
-<pre><code>    let &#123; x = 3 &#125; = &#123;&#125;
-    console.log(x) // 3
-    
-    let &#123; x, y = 5 &#125; = &#123; x: 1 &#125;
-    console.log(x) // 1
-    console.log(y) // 5
-    
-    let &#123; x: y = 3 &#125; = &#123; x: 5 &#125;
-    console.log(y) // 5
-</code></pre>
-<p>如果解构失败，变量的值等于undefined。</p>
-<pre><code>    let &#123; foo &#125; = &#123; bar: &quot;baz&quot; &#125;
-    console.log(foo) // undefined
-</code></pre>
-<h2 id="字符串的解构赋值"><a href="#字符串的解构赋值" class="headerlink" title="字符串的解构赋值"></a>字符串的解构赋值</h2><p>字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象</p>
-<pre><code>    let [a, b, c, d, e] = &quot;hello&quot;
-    console.log(a, b, c, d, e) // h e l l o
-</code></pre>
-<p>类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。</p>
-<pre><code>    let &#123;length&#125; = &quot;hello
-    console.log(length) //5
-</code></pre>
-<h2 id="数值和布尔值的解构赋值"><a href="#数值和布尔值的解构赋值" class="headerlink" title="数值和布尔值的解构赋值"></a>数值和布尔值的解构赋值</h2><p>解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。</p>
-<pre><code>    let &#123;toString: s&#125; = 123
-    s === Number.prototype.toString // true
-    
-    let &#123;toString: s&#125; = true
-    s === Boolean.prototype.toString // true
-</code></pre>
-<p>上面代码中，数值和布尔值的包装对象都有toString属性，因此变量s都能取到值。</p>
-<p>解构赋值的规则是，只要等号右边的值不是对象或数组，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。</p>
-<pre><code>    let &#123; prop: x &#125; = undefined // TypeError
-    let &#123; prop: y &#125; = null // TypeError
-</code></pre>
-<h2 id="函数参数的解构赋值"><a href="#函数参数的解构赋值" class="headerlink" title="函数参数的解构赋值"></a>函数参数的解构赋值</h2><p>函数的参数也可以使用解构赋值</p>
-<pre><code>    function add([x, y])&#123;
-      return x + y
-    &#125;
-    
-    add([1, 2]) // 3
-    
-    [[1, 2], [3, 4]].map(([a, b]) =&gt; a + b)    // [ 3, 7 ]
-</code></pre>
-<p>上面代码中，函数<code>add()</code>的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量<code>x</code>和<code>y</code>。对于函数内部的代码来说，它们能感受到的参数就是<code>x</code>和<code>y</code></p>
-<p>函数参数的解构也可以使用默认值</p>
-<pre><code>    function move(&#123;x = 0, y = 0&#125; = &#123;&#125;) &#123;
-      return [x, y]
-    &#125;
-    
-    move(&#123;x: 3, y: 8&#125;);// [3, 8]
-    move(&#123;x: 3&#125;) // [3, 0]
-    move(&#123;&#125;) // [0, 0]
-    move() // [0, 0]
-</code></pre>
-<p>下面代码是为函数move的参数指定默认值，而不是为变量x和y指定默认值，所以会得到与前一种写法不同的结果<code>undefined</code>就会触发函数参数的默认值</p>
-<pre><code>    function move(&#123;x, y&#125; = &#123; x: 0, y: 0 &#125;) &#123;
-      return [x, y]
-    &#125;
-    
-    move(&#123;x: 3, y: 8&#125;) // [3, 8]
-    move(&#123;x: 3&#125;) // [3, undefined]
-    move(&#123;&#125;) // [undefined, undefined]
-    move() // [0, 0]
-    
-    [1, undefined, 3].map((x = &#39;yes&#39;) =&gt; x)// [ 1, &#39;yes&#39;, 3 ]
-</code></pre>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/06/ES6/%E5%8F%98%E9%87%8F%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1073,7 +739,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-06 16:47:35" itemprop="dateModified" datetime="2021-11-06T16:47:35+08:00">2021-11-06</time>
+                <time title="修改时间：2021-11-08 22:33:42" itemprop="dateModified" datetime="2021-11-08T22:33:42+08:00">2021-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1098,89 +764,19 @@
       
           <h1 id="jQuery动画"><a href="#jQuery动画" class="headerlink" title="jQuery动画"></a>jQuery动画</h1><h2 id="slideUp-slideDown"><a href="#slideUp-slideDown" class="headerlink" title="slideUp / slideDown"></a>slideUp / slideDown</h2><p><strong>滑动动画</strong>: 通过不断改变元素的高度(height)实现</p>
 <ul>
-<li><code>slideDown()</code>: 带动画的展开</li>
-<li><code>slideUp()</code>: 带动画的收缩</li>
-<li><code>slideToggle()</code>: 带动画的切换展开/收缩</li>
-</ul>
-<pre><code>    const div = $(&quot;#test-slide&quot;);
-    
-    div.slideUp(3000); // 在3秒钟内逐渐向上消失
-</code></pre>
-<p>时间以毫秒为单位，但也可以是 ‘slow(600)’，’normal(400)’，’fast(200)’ 这些字符串，无参调用就是’normal’</p>
-<pre><code>    const div = $(&quot;#test-show-hide&quot;);
-    
-    div.slideDown(&quot;slow&quot;); // 在600ms内逐渐滑出
-</code></pre>
-<h2 id="fadeIn-fadeOut"><a href="#fadeIn-fadeOut" class="headerlink" title="fadeIn / fadeOut"></a>fadeIn / fadeOut</h2><p><strong>淡入淡出</strong>: 不断改变元素的透明度(opacity)来实现的</p>
-<ul>
-<li><code>fadeIn()</code>: 带动画的显示</li>
-<li><code>fadeOut()</code>: 带动画隐藏</li>
-<li><code>fadeToggle()</code>: 带动画切换显示/隐藏</li>
-</ul>
-<pre><code>    const div = $(&#39;#test-fade&#39;);
-    
-    div.fadeOut(&#39;slow&#39;); // 在 0.6 秒内淡出
-    fadeOut(&#39;slow&#39;)  fadeIn(&#39;slow&#39;)  fadeToggle(&#39;slow&#39;)
-</code></pre>
-<h2 id="show-hide"><a href="#show-hide" class="headerlink" title="show / hide"></a>show / hide</h2><p><strong>显示隐藏</strong>，默认没有动画, 动画通过改变(opacity/height/width)</p>
-<ul>
-<li><p><code>show()</code>: (不)带动画的显示</p>
+<li><p><code>slideDown()</code>: 带动画的展开</p>
 </li>
-<li><p><code>hide()</code>: (不)带动画的隐藏</p>
+<li><p><code>slideUp()</code>: 带动画的收缩</p>
 </li>
-<li><p><code>toggle()</code>: (不)带动画的切换显示/隐藏</p>
-<pre><code>  const div = $(&quot;#test-show-hide&quot;);
-  
-  div.hide(3000); // 在3秒钟内逐渐消失
-  
-  div.show(&quot;slow&quot;); // 在600ms内逐渐显示
-</code></pre>
-</li>
-</ul>
-<h2 id="自定义动画"><a href="#自定义动画" class="headerlink" title="自定义动画"></a>自定义动画</h2><p>jQuery动画本质 : 在指定时间内不断改变元素样式值来实现的</p>
-<ul>
-<li><code>animate()</code>: 自定义动画效果的动画</li>
-<li><code>stop()</code>: 停止动画</li>
-</ul>
-<p><code>animate()</code>，它可以实现任意动画效果，我们需要传入的参数就是 DOM 元素<strong>最终的 CSS 状态</strong>和<strong>时间</strong>，jQuery 在时间段内不断调整 CSS 直到达到我们设定的值:</p>
-<pre><code>    const $div = $(&quot;#test-animate&quot;);
-    //3s内透明度变为0.25，宽高变为256px
-    $div.animate(
-      &#123;
-        opacity: 0.25,
-        width: &quot;256px&quot;,
-        height: 256, //此处也可不写单位，传入数值256，单位默认为px 
-      &#125;,3000)
-</code></pre>
-<p>通过链式调用能做到动画实现的先后顺序</p>
-<pre><code>    const $div = $(&quot;#test-animate&quot;)
-    //宽度先变为200px，高度再变为200px
-    $div.animate(&#123;
-        width: 200
-      &#125;, 1000)
-      .animate(&#123;
-        height: 200
-      &#125;, 1000)
-</code></pre>
-<p><code>animate()</code> 还可以再传入一个回调函数，当动画结束时，该函数将被调用</p>
-<pre><code>    const $div = $(&quot;#test-animate&quot;);
-    
-    $div.animate(
-      &#123;
-        opacity: 0.25,
-        width: 256,
-        height: 256
-      &#125;,
-      3000,
-      function () &#123;
-        console.log(&quot;动画已结束&quot;)
-        // 恢复至初始状态:
-        $(this).css(&quot;opacity&quot;, &quot;1.0&quot;)
-            .css(&quot;width&quot;, &quot;128px&quot;)
-            .css(&quot;height&quot;, &quot;128px&quot;)
-      &#125;)
-</code></pre>
-
+<li><p><code>slideToggle()</code>: 带动画的切换展开/收缩</p></li></ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/24/jQuery/jQuery%E5%8A%A8%E7%94%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
