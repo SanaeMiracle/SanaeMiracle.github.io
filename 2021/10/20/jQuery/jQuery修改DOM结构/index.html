@@ -30,7 +30,7 @@
 <meta property="og:description" content="修改DOM结构直接使用浏览器提供的 API 对 DOM 结构进行修改，不但代码复杂，而且要针对浏览器写不同的代码。 有了 jQuery，我们就专注于操作 jQuery 对象本身，底层的 DOM 操作由 jQuery 完成就可以了，这样一来，修改 DOM 也大大简化了">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-20T13:26:54.000Z">
-<meta property="article:modified_time" content="2021-10-20T13:35:45.211Z">
+<meta property="article:modified_time" content="2021-11-06T08:48:40.862Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="jQuery">
 <meta name="twitter:card" content="summary">
@@ -185,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-20 21:26:54 / 修改时间：21:35:45" itemprop="dateCreated datePublished" datetime="2021-10-20T21:26:54+08:00">2021-10-20</time>
+              <time title="创建时间：2021-10-20 21:26:54" itemprop="dateCreated datePublished" datetime="2021-10-20T21:26:54+08:00">2021-10-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-06 16:48:40" itemprop="dateModified" datetime="2021-11-06T16:48:40+08:00">2021-11-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -210,9 +216,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="修改DOM结构"><a href="#修改DOM结构" class="headerlink" title="修改DOM结构"></a>修改DOM结构</h2><p>直接使用浏览器提供的 API 对 DOM 结构进行修改，不但代码复杂，而且要针对浏览器写不同的代码。 有了 jQuery，我们就专注于操作 jQuery 对象本身，底层的 DOM 操作由 jQuery 完成就可以了，这样一来，修改 DOM 也大大简化了</p>
+        <h1 id="修改DOM结构"><a href="#修改DOM结构" class="headerlink" title="修改DOM结构"></a>修改DOM结构</h1><p>直接使用浏览器提供的 API 对 DOM 结构进行修改，不但代码复杂，而且要针对浏览器写不同的代码。 有了 jQuery，我们就专注于操作 jQuery 对象本身，底层的 DOM 操作由 jQuery 完成就可以了，这样一来，修改 DOM 也大大简化了</p>
 <span id="more"></span>
-<h3 id="添加DOM节点"><a href="#添加DOM节点" class="headerlink" title="添加DOM节点"></a>添加DOM节点</h3><p>要添加新的 DOM 节点，除了通过 jQuery 的 html() 这种暴力方法外，还可以用 append() 方法，例如在<code>&lt;ul&gt;</code>内部插入内容</p>
+<h2 id="添加DOM节点"><a href="#添加DOM节点" class="headerlink" title="添加DOM节点"></a>添加DOM节点</h2><p>要添加新的 DOM 节点，除了通过 jQuery 的 html() 这种暴力方法外，还可以用 append() 方法，例如在<code>&lt;ul&gt;</code>内部插入内容</p>
 <pre><code>    &lt;div id=&quot;test-div&quot;&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;span&gt;JavaScript&lt;/span&gt;&lt;/li&gt;
@@ -236,7 +242,7 @@
     js.after(&quot;&lt;li&gt;&lt;span&gt;Lua&lt;/span&gt;&lt;/li&gt;&quot;);
 </code></pre>
 <p> 也就是说，同级节点可以用 after() 或者 before() 方法。</p>
-<h3 id="删除DOM节点"><a href="#删除DOM节点" class="headerlink" title="删除DOM节点"></a>删除DOM节点</h3><ul>
+<h2 id="删除DOM节点"><a href="#删除DOM节点" class="headerlink" title="删除DOM节点"></a>删除DOM节点</h2><ul>
 <li><code>empty()</code>删除所有匹配元素的子元素，不会删除自身节点</li>
 <li><code>remove()</code>删除所有匹配的元素，包括自己</li>
 </ul>
@@ -343,7 +349,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9DOM%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">修改DOM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0DOM%E8%8A%82%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">添加DOM节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4DOM%E8%8A%82%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">删除DOM节点</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9DOM%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">修改DOM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0DOM%E8%8A%82%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">添加DOM节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4DOM%E8%8A%82%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">删除DOM节点</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,7 +365,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -410,7 +416,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共34k字</span>
+  <span class="post-count">全站共37.2k字</span>
 </div>
         
 

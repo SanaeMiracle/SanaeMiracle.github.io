@@ -30,7 +30,7 @@
 <meta property="og:description" content="jQuery介绍jQuery 是 JavaScript 世界中使用最广泛的一个库。鼎盛时期全世界大约有 80~90%的网站直接或间接地使用了 jQuery。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-18T16:03:28.000Z">
-<meta property="article:modified_time" content="2021-10-19T08:45:00.440Z">
+<meta property="article:modified_time" content="2021-11-06T08:47:58.964Z">
 <meta property="article:author" content="Fangck">
 <meta property="article:tag" content="jQuery">
 <meta name="twitter:card" content="summary">
@@ -185,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-19 00:03:28 / 修改时间：16:45:00" itemprop="dateCreated datePublished" datetime="2021-10-19T00:03:28+08:00">2021-10-19</time>
+              <time title="创建时间：2021-10-19 00:03:28" itemprop="dateCreated datePublished" datetime="2021-10-19T00:03:28+08:00">2021-10-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-06 16:47:58" itemprop="dateModified" datetime="2021-11-06T16:47:58+08:00">2021-11-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -210,7 +216,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="jQuery介绍"><a href="#jQuery介绍" class="headerlink" title="jQuery介绍"></a>jQuery介绍</h2><p>jQuery 是 JavaScript 世界中使用最广泛的一个库。鼎盛时期全世界大约有 80~90%的网站直接或间接地使用了 jQuery。</p>
+        <h1 id="jQuery介绍"><a href="#jQuery介绍" class="headerlink" title="jQuery介绍"></a>jQuery介绍</h1><p>jQuery 是 JavaScript 世界中使用最广泛的一个库。鼎盛时期全世界大约有 80~90%的网站直接或间接地使用了 jQuery。</p>
 <span id="more"></span>
 <ul>
 <li>jQuery 能帮我们干这些事情: <ul>
@@ -220,11 +226,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="jQuery版本"><a href="#jQuery版本" class="headerlink" title="jQuery版本"></a>jQuery版本</h3><ul>
+<h2 id="jQuery版本"><a href="#jQuery版本" class="headerlink" title="jQuery版本"></a>jQuery版本</h2><ul>
 <li>jQuery 的 1.x 版本 兼容 ie678，2.x 为了精简代码体积移除了 ie678 的兼容。3.x 只兼容最新的一批浏览器</li>
 <li>从jQuery官网 <a target="_blank" rel="noopener" href="https://jquery.com/">https://jquery.com/</a> 下载最新版 3.x 即可</li>
 </ul>
-<h3 id="jQuery的本质"><a href="#jQuery的本质" class="headerlink" title="jQuery的本质"></a>jQuery的本质</h3><ul>
+<h2 id="jQuery的本质"><a href="#jQuery的本质" class="headerlink" title="jQuery的本质"></a>jQuery的本质</h2><ul>
 <li><p>jQuery实际上是封装好的js文件，只向外暴露了 $ / jQuery</p>
 </li>
 <li><p>整个文件相当于下段代码</p>
@@ -238,20 +244,20 @@
 </code></pre>
 </li>
 </ul>
-<h3 id="使用jQuery"><a href="#使用jQuery" class="headerlink" title="使用jQuery"></a>使用jQuery</h3><ul>
+<h2 id="使用jQuery"><a href="#使用jQuery" class="headerlink" title="使用jQuery"></a>使用jQuery</h2><ul>
 <li>jQuery实际上是js文件，因此使用 jQuery 是需要先从外部引入js文件</li>
 </ul>
-<h4 id="本地引入"><a href="#本地引入" class="headerlink" title="本地引入"></a>本地引入</h4><ul>
+<h3 id="本地引入"><a href="#本地引入" class="headerlink" title="本地引入"></a>本地引入</h3><ul>
 <li>将jQuery文件放在本地文件内<pre><code>  &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.12.3.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 </li>
 </ul>
-<h4 id="远程引入"><a href="#远程引入" class="headerlink" title="远程引入"></a>远程引入</h4><ul>
+<h3 id="远程引入"><a href="#远程引入" class="headerlink" title="远程引入"></a>远程引入</h3><ul>
 <li>从外部CDN库中引入，例如免费开源网站 <a target="_blank" rel="noopener" href="https://www.bootcdn.cn/">https://www.bootcdn.cn/</a><pre><code>  &lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 </li>
 </ul>
-<h3 id="jQuery核心函数"><a href="#jQuery核心函数" class="headerlink" title="jQuery核心函数"></a>jQuery核心函数</h3><ul>
+<h2 id="jQuery核心函数"><a href="#jQuery核心函数" class="headerlink" title="jQuery核心函数"></a>jQuery核心函数</h2><ul>
 <li>jQuery函数在代码中写作 $ 或 jQuery</li>
 <li>jQuery库向外直接暴露的就是 $ / jQuery</li>
 <li>引入jQuery库后, 直接使用$即可<ul>
@@ -263,7 +269,7 @@
 <pre><code>console.log(typeof $) // function
 console.log(jQuery === $) // true
 </code></pre>
-<h4 id="作为一般函数调用"><a href="#作为一般函数调用" class="headerlink" title="作为一般函数调用"></a>作为一般函数调用</h4><ul>
+<h3 id="作为一般函数调用"><a href="#作为一般函数调用" class="headerlink" title="作为一般函数调用"></a>作为一般函数调用</h3><ul>
 <li>作为一般函数调用: $(param)<ol>
 <li>参数为函数 : 当DOM加载完成后，执行此回调函数，相当于<code>window.onload = function()&#123;&#125;</code></li>
 <li>参数为选择器字符串: 查找所有匹配的标签, 并将它们封装成jQuery对象</li>
@@ -292,7 +298,7 @@ console.log(jQuery === $) // true
     &#125;)
 在上面代码中，需求是 **点击按钮: 显示按钮的文本, 显示一个新的输入框**
 </code></pre>
-<h4 id="作为对象使用"><a href="#作为对象使用" class="headerlink" title="作为对象使用"></a>作为对象使用</h4><ul>
+<h3 id="作为对象使用"><a href="#作为对象使用" class="headerlink" title="作为对象使用"></a>作为对象使用</h3><ul>
 <li>作为对象调用：$.xxx()，例如<ol>
 <li>$.each() : 隐式遍历数组</li>
 <li>$.trim() : 去除两端的空格</li>
@@ -307,7 +313,7 @@ console.log(jQuery === $) // true
         console.log(index, item)
     &#125;)
 </code></pre>
-<h3 id="jQuery核心对象"><a href="#jQuery核心对象" class="headerlink" title="jQuery核心对象"></a>jQuery核心对象</h3><ul>
+<h2 id="jQuery核心对象"><a href="#jQuery核心对象" class="headerlink" title="jQuery核心对象"></a>jQuery核心对象</h2><ul>
 <li><p>jQuery对象是一个<strong>包含所有匹配的任意多个dom元素的伪数组对象</strong></p>
 </li>
 <li><p>如何得到jQuery对象: 执行jQuery函数返回的就是jQuery对象</p>
@@ -431,7 +437,7 @@ console.log(jQuery === $) // true
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">jQuery介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">jQuery版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8jQuery"><span class="nav-number">1.3.</span> <span class="nav-text">使用jQuery</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BC%95%E5%85%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E5%BC%95%E5%85%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">远程引入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">jQuery核心函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E4%B8%80%E8%88%AC%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">1.4.1.</span> <span class="nav-text">作为一般函数调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.2.</span> <span class="nav-text">作为对象使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery%E6%A0%B8%E5%BF%83%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.5.</span> <span class="nav-text">jQuery核心对象</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">jQuery介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">jQuery版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery的本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8jQuery"><span class="nav-number">1.3.</span> <span class="nav-text">使用jQuery</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BC%95%E5%85%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E5%BC%95%E5%85%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">远程引入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">jQuery核心函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E4%B8%80%E8%88%AC%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">1.4.1.</span> <span class="nav-text">作为一般函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.2.</span> <span class="nav-text">作为对象使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery%E6%A0%B8%E5%BF%83%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.5.</span> <span class="nav-text">jQuery核心对象</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -447,7 +453,7 @@ console.log(jQuery === $) // true
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -498,7 +504,7 @@ console.log(jQuery === $) // true
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共34k字</span>
+  <span class="post-count">全站共37.2k字</span>
 </div>
         
 
