@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="SymbolES5 的对象属性名都是字符串，这容易造成属性名的冲突。如在对象中添加一个方法，这个方法名有可能导致重名，引起冲突 ES6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型 对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Symbol">
+<meta property="og:url" content="http://example.com/2021/11/11/ES6/Symbol/index.html">
+<meta property="og:site_name" content="Fang">
+<meta property="og:description" content="SymbolES5 的对象属性名都是字符串，这容易造成属性名的冲突。如在对象中添加一个方法，这个方法名有可能导致重名，引起冲突 ES6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型 对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-11T06:08:35.000Z">
+<meta property="article:modified_time" content="2021-11-11T12:57:34.268Z">
+<meta property="article:author" content="Fangck">
+<meta property="article:tag" content="javaScript">
+<meta property="article:tag" content="ES6">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/11/11/ES6/Symbol/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Symbol | Fang</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Fang</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/11/ES6/Symbol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Fangck">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Symbol
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-11 14:08:35 / 修改时间：20:57:34" itemprop="dateCreated datePublished" datetime="2021-11-11T14:08:35+08:00">2021-11-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h1><p>ES5 的对象属性名都是字符串，这容易造成属性名的冲突。如在对象中添加一个方法，这个方法名有可能导致重名，引起冲突</p>
+<p>ES6 引入了一种新的原始数据类型 <code>Symbol</code>，表示独一无二的值。它是 JavaScript 语言的第七种数据类型</p>
+<p>对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 <code>Symbol</code> 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突</p>
+<span id="more"></span>
+
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>声明方式:</p>
+<pre><code>    let s = Symbol()
+    console.log(s, typeof s) // Symbol() &#39;symbol&#39;
+</code></pre>
+<p><code>Symbol</code> 函数前不能使用 <code>new</code> 命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 <code>Symbol</code> 值不是对象，所以不能添加属性。基本上，它是一种类似于字符串的数据类型</p>
+<p><code>Symbol</code>函数可以接受一个字符串作为参数，表示对 <code>Symbol</code> 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分</p>
+<pre><code>    let s1 = Symbol(&quot;s1&quot;);
+    let s2 = Symbol(&quot;s2&quot;);
+
+    console.log(s1) // Symbol(s1)
+    console.log(s2) // Symbol(s2)
+
+    console.log(s1.toString()) // &quot;Symbol(s1)&quot;
+    console.log(s2.toString()) // &quot;Symbol(s2)&quot;
+</code></pre>
+<p>如果 <code>Symbol</code> 的参数是一个对象，就会调用该对象的<code>toString()</code>方法，将其转为字符串，然后才生成一个 <code>Symbol</code> 值</p>
+<pre><code>    const obj = &#123;
+        name: &quot;obj&quot;,
+        toString: function() &#123;
+            return this.name
+        &#125;
+    &#125;
+
+    let s = Symbol(obj)
+    console.log(s) //Symbol(obj)
+</code></pre>
+<p>注，<code>Symbol</code>函数的参数只是表示对当前 <code>Symbol</code> 值的描述，因此相同参数的<code>Symbol</code>函数的返回值是不相等的</p>
+<pre><code>    // 没有参数的情况
+    let s1 = Symbol()
+    let s2 = Symbol()
+    
+    s1 === s2 // false
+    
+    // 有参数的情况
+    let s1 = Symbol(&quot;s&quot;)
+    let s2 = Symbol(&quot;s&quot;)
+    
+    s1 === s2 // false
+</code></pre>
+<p><code>Symbol</code> 值不能与其他类型的值进行运算和比较，会报错</p>
+<pre><code>    let s = Symbol(&quot;s&quot;)
+    let result = s + 100
+    // TypeError: Cannot convert a Symbol value to a number
+</code></pre>
+<h2 id="Symbol-for"><a href="#Symbol-for" class="headerlink" title="Symbol.for()"></a>Symbol.for()</h2><p>有时，我们希望重新使用同一个 Symbol 值，<code>Symbol.for()</code>方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 <code>Symbol</code> 值。如果有，就返回这个 <code>Symbol</code> 值，否则就新建并返回一个以该字符串为名称的 <code>Symbol</code> 值</p>
+<pre><code>    Symbol.for(&quot;foo&quot;) // 创建一个 symbol 并放入 symbol 注册表中，键为 &quot;foo&quot;
+    Symbol.for(&quot;foo&quot;) // 从 symbol 注册表中读取键为&quot;foo&quot;的 symbol
+    Symbol.for(&quot;foo&quot;) === Symbol.for(&quot;foo&quot;) // true
+
+    Symbol(&quot;bar&quot;) === Symbol(&quot;bar&quot;) // false，Symbol() 函数每次都会返回新的一个 symbol
+    
+    var sym = Symbol.for(&quot;mario&quot;)
+    sym.toString()
+    // &quot;Symbol(mario)&quot;，mario 既是该 symbol 在 symbol 注册表中的键名，又是该 symbol 自身的描述字符串
+</code></pre>
+<p><code>Symbol.for()</code>与<code>Symbol()</code>这两种写法，都会生成新的 <code>Symbol</code>。它们的区别是，前者会被登记在全局环境中供搜索，后者不会。<code>Symbol.for()</code>不会每次调用就返回一个新的 <code>Symbol</code> 类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值</p>
+<h2 id="Symbol-keyFor"><a href="#Symbol-keyFor" class="headerlink" title="Symbol.keyFor()"></a>Symbol.keyFor()</h2><p><code>Symbol.keyFor()</code>方法返回一个已登记的 <code>Symbol</code> 类型值的 key</p>
+<pre><code>    let s1 = Symbol.for(&quot;foo&quot;)
+    Symbol.keyFor(s1) // &quot;foo&quot;
+    
+    let s2 = Symbol(&quot;foo&quot;)
+    Symbol.keyFor(s2) // undefined
+</code></pre>
+<p>变量<code>s2</code>属于未登记的 <code>Symbol</code> 值，所以返回<code>undefined</code></p>
+<p>需要注意的是，<code>Symbol.for()</code>为 Symbol 值登记的名字，是全局环境的，可以在不同的 iframe 或 service worker 中取到同一个值</p>
+<pre><code>    iframe = document.createElement(&quot;iframe&quot;)
+    iframe.src = String(window.location)
+    document.body.appendChild(iframe)
+    
+    iframe.contentWindow.Symbol.for(&quot;foo&quot;) === Symbol.for(&quot;foo&quot;)    // true
+</code></pre>
+<h2 id="内置的-Symbol-值"><a href="#内置的-Symbol-值" class="headerlink" title="内置的 Symbol 值"></a>内置的 Symbol 值</h2><p>除了定义自己使用的 Symbol 值以外，ES6 还提供了 11 个内置的 Symbol 值，指向语言内部使用的方法</p>
+<h3 id="Symbol-hasInstance"><a href="#Symbol-hasInstance" class="headerlink" title="Symbol.hasInstance"></a>Symbol.hasInstance</h3><p>对象的<code>Symbol.hasInstance</code>属性，指向一个内部方法。当其他对象使用<code>instanceof</code>运算符，判断是否为该对象的实例时，会调用这个方法。比如，<code>foo instanceof Foo</code>在语言内部，实际调用的是<code>Foo[Symbol.hasInstance](foo)</code></p>
+<pre><code>    class MyClass &#123;
+        [Symbol.hasInstance](foo) &#123;
+            return foo instanceof Array;
+        &#125;
+    &#125;
+
+    [1, 2, 3] instanceof new MyClass(); // true
+</code></pre>
+<p>上面代码中，<code>MyClass</code>是一个类，<code>new MyClass()</code>会返回一个实例。该实例的<code>Symbol.hasInstance()</code>方法，会在进行<code>instanceof</code>运算时自动调用，判断左侧的运算子是否为<code>Array</code>的实例</p>
+<h3 id="Symbol-isConcatSpreadable"><a href="#Symbol-isConcatSpreadable" class="headerlink" title="Symbol.isConcatSpreadable"></a>Symbol.isConcatSpreadable</h3><p>对象的<code>Symbol.isConcatSpreadable</code>属性等于一个布尔值，表示该对象用于<code>Array.prototype.concat()</code>时，是否可以展开</p>
+<pre><code>    let arr1 = [&quot;c&quot;, &quot;d&quot;];
+    [&quot;a&quot;, &quot;b&quot;].concat(arr1, &quot;e&quot;); // [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]
+    arr1[Symbol.isConcatSpreadable]; // undefined
+
+    let arr2 = [&quot;c&quot;, &quot;d&quot;];
+    arr2[Symbol.isConcatSpreadable] = false;
+    [&quot;a&quot;, &quot;b&quot;].concat(arr2, &quot;e&quot;); // [&#39;a&#39;, &#39;b&#39;, [&#39;c&#39;,&#39;d&#39;], &#39;e&#39;]
+</code></pre>
+<p>上面代码说明，数组的默认行为是可以展开，<code>Symbol.isConcatSpreadable</code>默认等于<code>undefined</code>。该属性等于<code>true</code>时，也有展开的效果</p>
+<p>类似数组的对象正好相反，默认不展开。它的<code>Symbol.isConcatSpreadable</code>属性设为<code>true</code>，才可以展开</p>
+<pre><code>    let obj = &#123;
+        length: 2,
+        0: &quot;c&quot;,
+        1: &quot;d&quot;
+    &#125;;
+    [&quot;a&quot;, &quot;b&quot;].concat(obj, &quot;e&quot;); // [&#39;a&#39;, &#39;b&#39;, obj, &#39;e&#39;]
+
+    obj[Symbol.isConcatSpreadable] = true;
+    [&quot;a&quot;, &quot;b&quot;].concat(obj, &quot;e&quot;); // [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]
+</code></pre>
+<h3 id="Symbol-species"><a href="#Symbol-species" class="headerlink" title="Symbol.species"></a>Symbol.species</h3><p>对象的<code>Symbol.species</code>属性，指向一个构造函数。创建衍生对象时，会使用该属性</p>
+<pre><code>    class MyArray extends Array &#123;&#125;
+
+    const a = new MyArray(1, 2, 3);
+    const b = a.map((x) =&gt; x);
+    const c = a.filter((x) =&gt; x &gt; 1);
+
+    b instanceof MyArray; // true
+    c instanceof MyArray; // true
+</code></pre>
+<p>上面代码中，子类<code>MyArray</code>继承了父类<code>Array</code>，a是<code>MyArray</code>的实例，b和c是a的衍生对象。您可能会认为，b和c都是调用数组方法生成的，所以应该是数组(<code>Array</code>的实例)，但实际上它们也是<code>MyArray</code>的实例</p>
+<h3 id="Symbol-match"><a href="#Symbol-match" class="headerlink" title="Symbol.match"></a>Symbol.match</h3><p>对象的<code>Symbol.match</code>属性，指向一个函数。当执行<code>str.match(myObject)</code>时，如果该属性存在，会调用它，返回该方法的返回值</p>
+<pre><code>    String.prototype.match(regexp);
+    // 等同于
+    regexp[Symbol.match](this);
+
+    class MyMatcher &#123;
+        [Symbol.match](string) &#123;
+            return &quot;hello world&quot;.indexOf(string);
+        &#125;
+    &#125;
+
+    &quot;e&quot;.match(new MyMatcher()); // 1
+</code></pre>
+<h3 id="Symbol-replace"><a href="#Symbol-replace" class="headerlink" title="Symbol.replace"></a>Symbol.replace</h3><p>对象的<code>Symbol.replace</code>属性，指向一个方法，当该对象被<code>String.prototype.replace</code>方法调用时，会返回该方法的返回值</p>
+<pre><code>    String.prototype.replace(searchValue, replaceValue);
+    // 等同于
+    searchValue[Symbol.replace](this, replaceValue);
+</code></pre>
+<p>例：</p>
+<pre><code>    const x = &#123;&#125;;
+    x[Symbol.replace] = (...s) =&gt; console.log(s);
+
+    &quot;Hello&quot;.replace(x, &quot;World&quot;); // [&quot;Hello&quot;, &quot;World&quot;]
+</code></pre>
+<p><code>Symbol.replace</code>方法会收到两个参数，第一个参数是<code>replace</code>方法正在作用的对象，上面例子是<code>Hello</code>，第二个参数是替换后的值，上面例子是<code>World</code></p>
+<h3 id="Symbol-search"><a href="#Symbol-search" class="headerlink" title="Symbol.search"></a>Symbol.search</h3><p>对象的<code>Symbol.search</code>属性，指向一个方法，当该对象被<code>String.prototype.search</code>方法调用时，会返回该方法的返回值</p>
+<pre><code>    String.prototype.search(regexp);
+    // 等同于
+    regexp[Symbol.search](this);
+
+    class MySearch &#123;
+        constructor(value) &#123;
+                this.value = value;
+            &#125;
+            [Symbol.search](string) &#123;
+                return string.indexOf(this.value);
+            &#125;
+    &#125;
+    &quot;foobar&quot;.search(new MySearch(&quot;foo&quot;)); // 0
+</code></pre>
+<h3 id="Symbol-split"><a href="#Symbol-split" class="headerlink" title="Symbol.split"></a>Symbol.split</h3><p>对象的<code>Symbol.split</code>属性，指向一个方法，当该对象被<code>String.prototype.split</code>方法调用时，会返回该方法的返回值</p>
+<pre><code>    String.prototype.split(separator, limit);
+    
+    separator[Symbol.split](this, limit);
+</code></pre>
+<p>例：</p>
+<pre><code>    class MySplitter &#123;
+        constructor(value) &#123;
+                this.value = value;
+            &#125;
+            [Symbol.split](string) &#123;
+                let index = string.indexOf(this.value);
+                if (index === -1) &#123;
+                    return string;
+                &#125;
+                return [string.substr(0, index), string.substr(index + this.value.length)];
+            &#125;
+    &#125;
+
+    &quot;foobar&quot;.split(new MySplitter(&quot;foo&quot;));
+    // [&#39;&#39;, &#39;bar&#39;]
+
+    &quot;foobar&quot;.split(new MySplitter(&quot;bar&quot;));
+    // [&#39;foo&#39;, &#39;&#39;]
+
+    &quot;foobar&quot;.split(new MySplitter(&quot;baz&quot;));
+    // &#39;foobar&#39;
+</code></pre>
+<p>上面方法使用<code>Symbol.split</code>方法，重新定义了字符串对象的split方法的行为</p>
+<h3 id="Symbol-iterator"><a href="#Symbol-iterator" class="headerlink" title="Symbol.iterator"></a>Symbol.iterator</h3><p>对象的<code>Symbol.iterator</code>属性，指向该对象的默认遍历器方法</p>
+<pre><code>    const myIterable = &#123;&#125;;
+    myIterable[Symbol.iterator] = function * () &#123;
+        yield 1;
+        yield 2;
+        yield 3;
+    &#125;;
+
+    [...myIterable]; // [1, 2, 3]
+</code></pre>
+<p>对象进行<code>for...of</code>循环时，会调用<code>Symbol.iterator</code>方法，返回该对象的默认遍历器</p>
+<pre><code>    class Collection &#123;
+        *[Symbol.iterator]() &#123;
+            let i = 0;
+            while (this[i] !== undefined) &#123;
+                yield this[i];
+                ++i;
+            &#125;
+        &#125;
+    &#125;
+
+    let myCollection = new Collection();
+    myCollection[0] = 1;
+    myCollection[1] = 2;
+
+    for (let value of myCollection) &#123;
+        console.log(value);
+    &#125;
+    // 1
+    // 2
+</code></pre>
+<h3 id="Symbol-toPrimitive"><a href="#Symbol-toPrimitive" class="headerlink" title="Symbol.toPrimitive"></a>Symbol.toPrimitive</h3><p>对象的<code>Symbol.toPrimitive</code>属性，指向一个方法。该对象被转为原始类型的值时，会调用这个方法，返回该对象对应的原始类型值。<br> <code>Symbol.toPrimitive</code>被调用时，会接受一个字符串参数，表示当前运算的模式，一共有三种模式。 </p>
+<ul>
+<li>Number: 该场合需要转成数值 </li>
+<li>String: 该场合需要转成字符串 </li>
+<li>Default: 该场合可以转成数值，也可以转成字符串</li>
+</ul>
+<pre><code>    let obj = &#123;
+        [Symbol.toPrimitive](hint) &#123;
+            switch (hint) &#123;
+                case &quot;number&quot;:
+                    return 123;
+                case &quot;string&quot;:
+                    return &quot;str&quot;;
+                case &quot;default&quot;:
+                    return &quot;default&quot;;
+                default:
+                    throw new Error();
+            &#125;
+        &#125;,
+    &#125;;
+
+    2 * obj; // 246
+    3 + obj; // &#39;3default&#39;
+    obj == &quot;default&quot;; // true
+    String(obj); // &#39;str&#39;
+</code></pre>
+<h3 id="Symbol-toStringTag"><a href="#Symbol-toStringTag" class="headerlink" title="Symbol.toStringTag"></a>Symbol.toStringTag</h3><p>对象的<code>Symbol.toStringTag</code>属性，指向一个方法。在该对象上面调用<code>Object.prototype.toString</code>方法时，如果这个属性存在，它的返回值会出现在<code>toString()</code>方法返回的字符串之中，表示对象的类型。也就是说，这个属性可以用来定制<code>[object Object]</code>或<code>[object Array]</code>中<code>object</code>后面的那个字符串</p>
+<pre><code>    // 例一
+    (&#123;
+        [Symbol.toStringTag]: &quot;Foo&quot;
+    &#125;.toString());
+    // &quot;[object Foo]&quot;
+
+    // 例二
+    class Collection &#123;
+        get[Symbol.toStringTag]() &#123;
+            return &quot;xxx&quot;;
+        &#125;
+    &#125;
+    let x = new Collection();
+    Object.prototype.toString.call(x); // &quot;[object xxx]&quot;
+</code></pre>
+<p>ES6 新增内置对象的<code>Symbol.toStringTag</code>属性值如下。 </p>
+<ul>
+<li><code>JSON[Symbol.toStringTag]</code>: ‘JSON’ </li>
+<li><code>Math[Symbol.toStringTag]</code>: ‘Math’ </li>
+<li>Module 对象 <code>M[Symbol.toStringTag]</code>: ‘Module’ </li>
+<li><code>ArrayBuffer.prototype[Symbol.toStringTag]</code>: ‘ArrayBuffer’ </li>
+<li><code>DataView.prototype[Symbol.toStringTag]</code>: ‘DataView’ </li>
+<li><code>Map.prototype[Symbol.toStringTag]</code>: ‘Map’ </li>
+<li><code>Promise.prototype[Symbol.toStringTag]</code>: ‘Promise’ </li>
+<li><code>Set.prototype[Symbol.toStringTag]</code>: ‘Set’ </li>
+<li><code>%TypedArray%.prototype[Symbol.toStringTag]</code>: ‘Uint8Array’等 </li>
+<li><code>WeakMap.prototype[Symbol.toStringTag]</code>: ‘WeakMap’ </li>
+<li><code>WeakSet.prototype[Symbol.toStringTag]</code>: ‘WeakSet’ </li>
+<li><code>%MapIteratorPrototype%[Symbol.toStringTag]</code>: ‘Map Iterator’ </li>
+<li><code>%SetIteratorPrototype%[Symbol.toStringTag]</code>: ‘Set Iterator’ </li>
+<li><code>%StringIteratorPrototype%[Symbol.toStringTag]</code>: ‘String Iterator’ </li>
+<li><code>Symbol.prototype[Symbol.toStringTag]</code>: ‘Symbol’ </li>
+<li><code>Generator.prototype[Symbol.toStringTag]</code>: ‘Generator’ </li>
+<li><code>GeneratorFunction.prototype[Symbol.toStringTag]</code>: ‘GeneratorFunction</li>
+</ul>
+<h3 id="Symbol-unscopables"><a href="#Symbol-unscopables" class="headerlink" title="Symbol.unscopables"></a>Symbol.unscopables</h3><p>对象的<code>Symbol.unscopables</code>属性，指向一个对象。该对象指定了使用<code>with</code>关键字时，哪些属性会被<code>with</code>环境排除</p>
+<pre><code>    Array.prototype[Symbol.unscopables];
+    // &#123;
+    //   copyWithin: true,
+    //   entries: true,
+    //   fill: true,
+    //   find: true,
+    //   findIndex: true,
+    //   includes: true,
+    //   keys: true
+    // &#125;
+
+    Object.keys(Array.prototype[Symbol.unscopables]);
+    // [&#39;copyWithin&#39;, &#39;entries&#39;, &#39;fill&#39;, &#39;find&#39;, &#39;findIndex&#39;, &#39;includes&#39;, &#39;keys&#39;]
+</code></pre>
+<p>上面代码说明，数组有 7 个属性，会被with命令排除</p>
+<pre><code>    // 没有 unscopables 时
+    class MyClass &#123;
+        foo() &#123;
+            return 1;
+        &#125;
+    &#125;
+
+    var foo = function () &#123;
+        return 2;
+    &#125;;
+
+    with(MyClass.prototype) &#123;
+        foo(); // 1
+    &#125;
+
+    // 有 unscopables 时
+    class MyClass &#123;
+        foo() &#123;
+            return 1;
+        &#125;
+        get[Symbol.unscopables]() &#123;
+            return &#123;
+                foo: true
+            &#125;;
+        &#125;
+    &#125;
+
+    var foo = function () &#123;
+        return 2;
+    &#125;;
+
+    with(MyClass.prototype) &#123;
+        foo(); // 2
+    &#125;
+</code></pre>
+<p>上面代码通过指定<code>Symbol.unscopables</code>属性，使得<code>with</code>语法块不会在当前作用域寻找<code>foo</code>属性，即<code>foo</code>将指向外层作用域的变量</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javaScript/" rel="tag"># javaScript</a>
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/08/ES6/%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A9%E5%B1%95/" rel="prev" title="函数的扩展">
+      <i class="fa fa-chevron-left"></i> 函数的扩展
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/15/less/less/" rel="next" title="less">
+      less <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Symbol"><span class="nav-number">1.</span> <span class="nav-text">Symbol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol-for"><span class="nav-number">1.2.</span> <span class="nav-text">Symbol.for()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol-keyFor"><span class="nav-number">1.3.</span> <span class="nav-text">Symbol.keyFor()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E7%9A%84-Symbol-%E5%80%BC"><span class="nav-number">1.4.</span> <span class="nav-text">内置的 Symbol 值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-hasInstance"><span class="nav-number">1.4.1.</span> <span class="nav-text">Symbol.hasInstance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-isConcatSpreadable"><span class="nav-number">1.4.2.</span> <span class="nav-text">Symbol.isConcatSpreadable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-species"><span class="nav-number">1.4.3.</span> <span class="nav-text">Symbol.species</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-match"><span class="nav-number">1.4.4.</span> <span class="nav-text">Symbol.match</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-replace"><span class="nav-number">1.4.5.</span> <span class="nav-text">Symbol.replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-search"><span class="nav-number">1.4.6.</span> <span class="nav-text">Symbol.search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-split"><span class="nav-number">1.4.7.</span> <span class="nav-text">Symbol.split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-iterator"><span class="nav-number">1.4.8.</span> <span class="nav-text">Symbol.iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-toPrimitive"><span class="nav-number">1.4.9.</span> <span class="nav-text">Symbol.toPrimitive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-toStringTag"><span class="nav-number">1.4.10.</span> <span class="nav-text">Symbol.toStringTag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-unscopables"><span class="nav-number">1.4.11.</span> <span class="nav-text">Symbol.unscopables</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fangck"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Fangck</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019-12 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fangck</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共41.7k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
