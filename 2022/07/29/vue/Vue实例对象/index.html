@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Vue实例对象创建并绑定 Vue 对象Vue 也是一个构造函数,通过 new Vue()可以创建一个 Vue 对象,通过 Vue 对象进行对 DOM 元素以及内部的子孙元素的操作     new Vue(&amp;#123;         el: &#39;#div&#39;,         &#x2F;*         在Vue中通过el属性来绑定一个DOM元素,从而让该DOM元素以及内部都绑定Vue的相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue实例对象">
+<meta property="og:url" content="http://example.com/2022/07/29/vue/Vue%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="Fang">
+<meta property="og:description" content="Vue实例对象创建并绑定 Vue 对象Vue 也是一个构造函数,通过 new Vue()可以创建一个 Vue 对象,通过 Vue 对象进行对 DOM 元素以及内部的子孙元素的操作     new Vue(&amp;#123;         el: &#39;#div&#39;,         &#x2F;*         在Vue中通过el属性来绑定一个DOM元素,从而让该DOM元素以及内部都绑定Vue的相关">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-29T15:58:08.000Z">
+<meta property="article:modified_time" content="2022-09-17T15:22:23.238Z">
+<meta property="article:author" content="Fangck">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/07/29/vue/Vue%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue实例对象 | Fang</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Fang</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/29/vue/Vue%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Fangck">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue实例对象
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-29 23:58:08" itemprop="dateCreated datePublished" datetime="2022-07-29T23:58:08+08:00">2022-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-17 23:22:23" itemprop="dateModified" datetime="2022-09-17T23:22:23+08:00">2022-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Vue实例对象"><a href="#Vue实例对象" class="headerlink" title="Vue实例对象"></a>Vue实例对象</h1><h2 id="创建并绑定-Vue-对象"><a href="#创建并绑定-Vue-对象" class="headerlink" title="创建并绑定 Vue 对象"></a>创建并绑定 Vue 对象</h2><p>Vue 也是一个构造函数,通过 <code>new Vue()</code>可以创建一个 Vue 对象,通过 Vue 对象进行对 DOM 元素以及内部的子孙元素的操作</p>
+<pre><code>    new Vue(&#123;
+        el: &#39;#div&#39;,
+        /*
+        在Vue中通过el属性来绑定一个DOM元素,从而让该DOM元素以及内部都绑定Vue的相关操作,一般是通过ID进行查找,因为这样才能够精确绑定
+        */
+        data: &#123;
+            //data属性中包含着在el中使用的使用的变量或属性
+            msg: 123,
+        &#125;,
+        //也可以使用函数形式的
+        data() &#123;
+            return &#123;
+                msg: 123,
+            &#125;
+        &#125;,
+        //methods属性包含着需要使用的方法
+        methods: &#123;
+            show() &#123;
+                console.log(this.msg)
+            &#125;,
+        &#125;,
+    &#125;)
+</code></pre>
+<p><strong>注:在实例内部使用定义的属性或方法时不能直接使用,必须通过 <code>this</code> 来指定需要用的属性</strong></p>
+<h2 id="vue-实例中的参数与选项"><a href="#vue-实例中的参数与选项" class="headerlink" title="vue 实例中的参数与选项"></a>vue 实例中的参数与选项</h2><ul>
+<li><code>el:&quot;#id&quot;</code>, //DOM 成员（1/3）<br>  提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。</li>
+</ul>
+<ul>
+<li><code>template:&quot;&lt;tag&gt;&lt;/tag&gt;&quot;</code>, //DOM 成员（2/3）<br>  一个字符串模板作为 Vue 实例的标识使用。模板将会 替换 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 </li>
+</ul>
+<ul>
+<li><p><code>slot render: (h)=&gt;&#123;h(App)&#125;</code>, //DOM 成员（3/3）<br>  字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。 </p>
+<pre><code>  // 原理 
+  render: (h) =&gt; &#123; 
+      return &lt;APP&gt;&lt;/APP&gt;
+  &#125; // 可以代替components和template
+</code></pre>
+</li>
+<li><p><code>data</code> //数据成员（1/6） </p>
+<pre><code>  data():&#123; return&#123; &#125; &#125;
+</code></pre>
+<p>  Vue 实例的数据对象。Vue 将会递归将 <code>data</code> 的属性转换为 <code>getter/setter</code>，从而让 <code>data</code> 的属性能够响应数据变化</p>
+</li>
+<li><p><code>methods</code> //数据成员（2/6） </p>
+<pre><code>  methods:&#123; func()&#123; &#125; &#125; 
+</code></pre>
+<p>  <code>methods</code> 将被混入到 Vue 实例中，可以直接通过 <code>VM</code> 实例访问这些方法，或者在指令表达式中使用 方法中的 <code>this</code> 自动绑定为 Vue 实例</p>
+</li>
+<li><p><code>watch</code> //数据成员（3/6） </p>
+<pre><code>  watch: &#123; 
+      key: value,
+      $route(newValue, oldValue) &#123;//监控路由&#125; 
+  &#125;
+</code></pre>
+<p>  Vue的监视属性，整个为一个对象，键是需要观察的表达式，值是对应回调函数 </p>
+</li>
+<li><p><code>computed</code> //数据成员（4/6） </p>
+<pre><code>  computed: &#123;
+      getTotalCount() &#123;
+          const totalCount = 0
+          return totalCount
+      &#125;,
+  &#125;
+</code></pre>
+<p>  vue 的计算属性，将被混入到 Vue 实例中。所有 <code>getter</code> 和 <code>setter</code> 的 <code>this</code> 上下文自动地绑定为 Vue 实例 </p>
+</li>
+<li><p><code>props</code> //数据成员（5/6） </p>
+<pre><code>  props:[&#39;counts&#39;,&#39;ids&#39;]
+</code></pre>
+<p>  用于父子组件的 <code>eventbus</code> 传值，是数组或对象，<code>props</code> 的成员是子组件接收的来自父组件的数据 </p>
+</li>
+<li><p><code>propsData</code> //数据成员（6/6）<br>  创建实例时传递 <code>props</code>。主要作用是方便测试。基本不使用。</p>
+</li>
+<li><p><code>filters</code> //资源（1/3） </p>
+<pre><code>  filters(
+      &#39;filterName&#39;,
+      (input,
+      function () &#123;
+          return newvalue
+      &#125;)
+  )
+</code></pre>
+<p>  包含 Vue 实例可用过滤器的哈希表。 </p>
+</li>
+<li><p><code>directives</code> //资源（2/3）<br>  包含 Vue 实例可用指令的哈希表。 </p>
+</li>
+<li><p><code>components</code> //资源（3/3）<br>  （即该组件的子实例）这里是包含 Vue 实例可用组件的哈希表。 </p>
+</li>
+<li><p><code>name</code> //杂项（1/6）<br>  允许组件模板递归地调用自身。注意，组件在全局用 <code>Vue.component()</code> 注册时，全局 ID 自动作为组件的 <code>name</code>。</p>
+</li>
+<li><p><code>parent</code> //杂项（2/6）<br>  指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 <code>this.$parent</code> 访问父实例，子实例被推入父实例的 <code>$children</code> 数组中。 </p>
+</li>
+<li><p><code>mixins</code> //杂项（3/6）<br>  <code>mixins</code> 选项接受一个混合对象的数组。Mixin 钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。 </p>
+</li>
+<li><p><code>extends</code> //杂项（4/6）<br>  允许声明扩展另一个组件。这主要是为了便于扩展单文件组件。这和 <code>mixins</code> 类似，区别在于，组件自身的选项会比要扩展的源组件具有更高的优先级。 </p>
+</li>
+<li><p><code>delimiters</code> //杂项（5/6）<br>  改变纯文本插入分隔符。 </p>
+</li>
+<li><p><code>functional</code> //杂项（6/6）<br>  使组件无状态（没有 <code>data</code> ）和无实例（没有 <code>this</code> 上下</p>
+</li>
+</ul>
+<h2 id="常用指令实例"><a href="#常用指令实例" class="headerlink" title="常用指令实例"></a>常用指令实例</h2><pre><code>    &lt;!DOCTYPE html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+            &lt;meta charset=&quot;UTF-8&quot; /&gt;
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+            &lt;title&gt;startVue&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;div id=&quot;app&quot;&gt;
+                &lt;!-- &#123;&#123;&#125;&#125;双大括号表达式，里面是js代码 -->
+		            <p>&#123;&#123; msg &#125;&#125;&lt;/p&gt;
+
+                &lt;!-- 相当于innerText --&gt;
+                &lt;p v-text=&quot;str&quot;&gt;&lt;/p&gt;
+
+                &lt;!-- 相当于innerHTML --&gt;
+                &lt;p v-html=&quot;str&quot;&gt;&lt;/p&gt;
+
+                &lt;!-- 强制绑定事件, 一般用于用于响应式地更新HTML attribute, 简写方式:
+                从 2.6.0 开始，可以用方括号括起来的 JavaScript 表达式作为一个指令的参数
+                &lt;a v-bind:[attributeName]=&quot;url&quot;&gt; ... &lt;/a&gt;
+                这里的 attributeName 会被作为一个 JavaScript 表达式进行动态求值,求得的值将会作为最终的参数来使用。
+                例如，如果你的 Vue 实例有一个 data 属性 attributeName，其值为 &quot;href&quot;
+                那么这个绑定将等价于 v-bind:href--&gt;
+                &lt;a v-bind:href=&quot;url&quot;&gt;Baidu&lt;/a&gt;
+
+                &lt;!-- 绑定事件监听,监听 DOM 事件, 简写方式@ --&gt;
+                &lt;button v-on:click=&quot;test&quot;&gt;Submit&lt;/button&gt;
+
+                &lt;!-- 双向绑定事件,动态实时更新里面的内容 --&gt;
+                &lt;div&gt;
+                    &lt;input type=&quot;text&quot; v-model=&quot;input&quot; placeholder=&quot;Please input&quot; /&gt;
+                    &lt;p&gt;&#123;&#123; input &#125;&#125;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/body&gt;
+        &lt;script text=&quot;javascript&quot; src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+        &lt;script text=&quot;javascript&quot;&gt;
+            const app = new Vue(&#123;
+                //要挂载的位置
+                //在Vue中通过el属性来绑定一个DOM元素,从而让该DOM元素以及内部都绑定Vue的相关操作
+                //一般是通过ID进行查找,因为这样才能够精确绑定
+                el: &#39;#app&#39;, // data属性中包含着在el中使用的使用的变量或属性
+                data: &#123;
+                    msg: &#39;xhw&#39;,
+                    str: &#39;&lt;a href=&quot;#&quot;&gt;XHW&lt;/a&gt;&#39;,
+                    url: &#39;https://www.baidu.com&#39;,
+                    input: &#39;&#39;,
+                &#125;, // methods属性包含着需要使用的方法
+                /**
+                 * 也可以写成(以组件形式里必须写成这个)
+                 * data() &#123;
+                 *     return &#123;
+                 *
+                 * &#125;
+                 * &#125;,
+                 */ methods: &#123;
+                    test() &#123;
+                        alert(&#39;!!!&#39;)
+                    &#125;,
+                &#125;,
+            &#125;)
+        &lt;/script&gt;
+    &lt;/html&gt;
+</p></code></pre>
+<h2 id="vm-mount"><a href="#vm-mount" class="headerlink" title="vm.$mount"></a><code>vm.$mount</code></h2><p>如果 Vue 实例在实例化时没有收到 <code>el</code> 选项，则它处于“未挂载”状态，没有关联的 DOM 元素。可以使用 <code>vm.$mount()</code> 手动地挂载一个未挂载的实例</p>
+<p>**注意:**这个方法返回实例自身,因而可以链式调用其它实例方法</p>
+<pre><code>    var MyComponent = Vue.extend(&#123; template: &#39;&lt;div&gt;Hello!&lt;/div&gt;&#39; &#125;) // 创建并挂载到 #app (会替换 #app)
+    new MyComponent().$mount(&#39;#app&#39;) // 同上
+    new MyComponent(&#123; el: &#39;#app&#39; &#125;) // 或者，在文档之外渲染并且随后挂载 var
+    component = new MyComponent().$mount()
+    document.getElementById(&#39;app&#39;).appendChild(component.$el)
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/26/ES6/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%89%A9%E5%B1%95/" rel="prev" title="字符串的扩展">
+      <i class="fa fa-chevron-left"></i> 字符串的扩展
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/17/vue/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="next" title="Vue 生命周期">
+      Vue 生命周期 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">Vue实例对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E7%BB%91%E5%AE%9A-Vue-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">创建并绑定 Vue 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-%E5%AE%9E%E4%BE%8B%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%89%E9%A1%B9"><span class="nav-number">1.2.</span> <span class="nav-text">vue 实例中的参数与选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">常用指令实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-mount"><span class="nav-number">1.4.</span> <span class="nav-text">vm.$mount</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fangck"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Fangck</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019-12 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fangck</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共84.1k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

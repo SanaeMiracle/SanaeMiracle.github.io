@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="set 与 mapset基本用法ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。 Set 本身是一个构造函数，用来生成 Set 数据结构。 set 结构的声明    let s &#x3D; new Set()     let s2 &#x3D; new Set([1, 2, 3, 4])  set 的初始化Set 函数可以接受一个数组(或者具有 iterable 接口的其他数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="set 与 map">
+<meta property="og:url" content="http://example.com/2021/12/18/ES6/set%E4%B8%8Emap/index.html">
+<meta property="og:site_name" content="Fang">
+<meta property="og:description" content="set 与 mapset基本用法ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。 Set 本身是一个构造函数，用来生成 Set 数据结构。 set 结构的声明    let s &#x3D; new Set()     let s2 &#x3D; new Set([1, 2, 3, 4])  set 的初始化Set 函数可以接受一个数组(或者具有 iterable 接口的其他数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-18T01:11:59.000Z">
+<meta property="article:modified_time" content="2021-12-19T07:22:27.700Z">
+<meta property="article:author" content="Fangck">
+<meta property="article:tag" content="javaScript">
+<meta property="article:tag" content="ES6">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/12/18/ES6/set%E4%B8%8Emap/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>set 与 map | Fang</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Fang</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/18/ES6/set%E4%B8%8Emap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Fangck">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          set 与 map
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-18 09:11:59" itemprop="dateCreated datePublished" datetime="2021-12-18T09:11:59+08:00">2021-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-19 15:22:27" itemprop="dateModified" datetime="2021-12-19T15:22:27+08:00">2021-12-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="set-与-map"><a href="#set-与-map" class="headerlink" title="set 与 map"></a>set 与 map</h1><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>ES6 提供了新的数据结构 Set。它类似于数组，<strong>但是成员的值都是唯一的，没有重复的值</strong>。</p>
+<p>Set 本身是一个构造函数，用来生成 Set 数据结构。</p>
+<h4 id="set-结构的声明"><a href="#set-结构的声明" class="headerlink" title="set 结构的声明"></a>set 结构的声明</h4><pre><code>    let s = new Set()
+    let s2 = new Set([1, 2, 3, 4])
+</code></pre>
+<h4 id="set-的初始化"><a href="#set-的初始化" class="headerlink" title="set 的初始化"></a>set 的初始化</h4><p>Set 函数可以接受一个数组(或者具有 iterable 接口的其他数据结构)作为参数，用来初始化</p>
+<pre><code>    let arr = [1, 2, 3, 4]
+    let s = new Set(arr)
+
+    let s2 = new Set()
+    arr.forEach((x) =&gt; s.add(x))
+
+    let s3 = new Set(document.querySelectorAll(&quot;div&quot;))
+</code></pre>
+<h4 id="set-转换为数组"><a href="#set-转换为数组" class="headerlink" title="set 转换为数组"></a>set 转换为数组</h4><p>使用<code>...</code>扩展运算符或<code>Array.from</code>方法</p>
+<pre><code>    let s = new Set([1, 2, 3, 4])
+    let arr = [...s]
+    let arr2 = Array.from(set)
+</code></pre>
+<p>因此有两种数组去重的方法</p>
+<pre><code>    let s = new Set([1, 1, 2, 3, 4, 2])
+    let arr = [...s]
+    let arr2 = Array.from(s)
+</code></pre>
+<h4 id="注"><a href="#注" class="headerlink" title="注"></a>注</h4><p>向 Set 加入值的时候，不会发生类型转换，所以5和”5”是两个不同的值。Set 内部判断两个值是否不同，使用的算法叫做“Same-value-zero equality”，它类似于精确相等运算符(===)，主要的区别是NaN等于自身，而精确相等运算符认为NaN不等于自身。 </p>
+<pre><code>    let set = new Set()
+    let a = NaN
+    let b = NaN
+    set.add(a)
+    set.add(b)
+    // Set &#123;NaN&#125;
+</code></pre>
+<p>上面代码向 Set 实例添加了两个NaN，但是只能加入一个。这表明，在 Set 内部，两个NaN是相等.另外，两个对象总是不相等的</p>
+<pre><code>    let set = new Set();
+    
+    set.add(&#123;&#125;);
+    set.size; // 1
+    
+    set.add(&#123;&#125;);
+    set.size; // 2
+</code></pre>
+<h3 id="Set-实例的属性和方法"><a href="#Set-实例的属性和方法" class="headerlink" title="Set 实例的属性和方法"></a>Set 实例的属性和方法</h3><p>属性：</p>
+<ul>
+<li><code>Set.prototype.constructor</code>: 构造函数，默认就是Set函数。</li>
+<li><code>Set.prototype.size</code>: 返回Set实例的成员总数。</li>
+</ul>
+<p>方法：<br>Set 实例的方法分为两大类: 操作方法(用于操作数据)和遍历方法(用于遍历成员)。下面先介绍四个操作方法</p>
+<ul>
+<li><p><code>add(value)</code>: 添加某个值，返回 Set 结构本身。 </p>
+</li>
+<li><p><code>delete(value)</code>: 删除某个值，返回一个布尔值，表示删除是否成功。 </p>
+</li>
+<li><p><code>has(value)</code>: 返回一个布尔值，表示该值是否为Set的成员。 </p>
+</li>
+<li><p><code>clear()</code>: 清除所有成员，没有返回值。</p>
+<pre><code>  s.add(1).add(2).add(2)
+  s.size // 2
+  
+  s.has(1) // true
+  s.has(2) // true
+  s.has(3) // false
+  
+  s.delete(2)
+  s.has(2) // false
+</code></pre>
+</li>
+</ul>
+<h3 id="遍历操作"><a href="#遍历操作" class="headerlink" title="遍历操作"></a>遍历操作</h3><p>Set 结构的实例有四个遍历方法，可以用于遍历成员。</p>
+<ul>
+<li><code>keys()</code>: 返回键名的遍历器</li>
+<li><code>values()</code>: 返回键值的遍历器</li>
+<li><code>entries()</code>: 返回键值对的遍历器</li>
+<li><code>forEach()</code>: 使用回调函数遍历每个成员</li>
+</ul>
+<p>需要特别指出的是，<strong>Set的遍历顺序就是插入顺序</strong>。这个特性有时非常有用，比如使用 Set 保存一个回调函数列表，调用时就能保证按照添加顺序调用。</p>
+<p>1.<code>keys()</code>，<code>values()</code>，<code>entries()</code><br>以上三个方法的返回值都是遍历器对象。由于 Set 结构没有键名，只有键值(或者说键名和键值是同一个值)，所以<code>keys()</code>方法和<code>values()</code>方法的行为完全一致</p>
+<pre><code>    let set = new Set([&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]);
+    
+    for (let item of set.keys()) &#123;
+      console.log(item);
+    &#125;
+    // red
+    // green
+    // blue
+    
+    for (let item of set.values()) &#123;
+      console.log(item);
+    &#125;
+    // red
+    // green
+    // blue
+    
+    for (let item of set.entries()) &#123;
+      console.log(item);
+    &#125;
+    // [&quot;red&quot;, &quot;red&quot;]
+    // [&quot;green&quot;, &quot;green&quot;]
+    // [&quot;blue&quot;, &quot;blue&quot;]
+</code></pre>
+<p>上面代码中，<code>entries()</code>方法返回的遍历器，同时包括键名和键值，所以每次输出一个数组，它的两个成员完全相等。</p>
+<p>Set 结构的实例默认可遍历，它的默认遍历器生成函数就是它的values方法</p>
+<pre><code>    Set.prototype[Symbol.iterator] === Set.prototype.values  // true
+</code></pre>
+<p>2.forEach()<br>Set 结构的实例与数组一样，也拥有forEach方法，用于对每个成员执行某种操作，没有返回值</p>
+<pre><code>    set = new Set([&quot;red&quot;, &quot;bule&quot;, &quot;black&quot;])
+    set.forEach((value, key) =&gt; console.log(key + &quot; : &quot; + value))
+    // red : red
+    // bule : bule
+    // black : black
+</code></pre>
+<p>上面代码说明，forEach方法的参数就是一个处理函数。该函数的参数与数组的forEach一致，依次为键值、键名、集合本身(上例省略了该参数)。这里需要注意，Set 结构的键名就是键值(两者是同一个值)，因此第一个参数与第二个参数的值永远都是一样的。<br>另外，forEach方法还可以有第二个参数，表示绑定处理函数内部的this对象</p>
+<p>3.遍历的应用</p>
+<p>实现并集(Union)、交集(Intersect)和差集(Difference)</p>
+<pre><code>    let s = new Set([1, 2, 3])
+    let s2 = new Set([2, 3, 4])
+    
+    // 并集
+    let union = new Set([...s, ...s2])
+    //交集
+    let intersect = new Set([...s].filter(num =&gt; s2.has(num)))
+    //差集
+    let difference = new Set([...s].filter(num =&gt; !s2.has(num)))
+</code></pre>
+<p>如果想在遍历操作中，同步改变原来的 Set 结构，目前没有直接的方法，但有两种变通方法。一种是利用原 Set 结构映射出一个新的结构，然后赋值给原来的 Set 结构；另一种是利用<code>Array.from()</code>方法。 </p>
+<pre><code>    // 方法一
+    let set = new Set([1, 2, 3]);
+    set = new Set([...set].map(val =&gt; val * 2));
+    // set的值是2, 4, 6
+    
+    // 方法二
+    let set = new Set([1, 2, 3]);
+    set = new Set(Array.from(set, val =&gt; val * 2));
+    // set的值是2, 4, 6
+</code></pre>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>JavaScript 的对象(Object)，本质上是键值对的集合(Hash 结构)，但是传统上只能用字符串当作键。这给它的使用带来了很大的限制</p>
+<p>ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值(包括对象)都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map 结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果您需要“键值对”的数据结构，Map 比 Object 更合适。</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h4 id="map-创建"><a href="#map-创建" class="headerlink" title="map 创建"></a>map 创建</h4><p>作为构造函数，Map 也可以接受一个数组作为参数。该<strong>数组的成员是一个个表示键值对的数组</strong></p>
+<pre><code>    let m = new Map([
+        [&quot;name&quot;, &quot;tom&quot;],
+        [&quot;age&quot;, 18]
+    ])
+    m.size //2
+</code></pre>
+<p>上面代码在新建 Map 实例时，就指定了两个键<code>name</code>和<code>age</code>，相当于下面代码<br>        let item = [<br>            [“name”, “tom”],<br>            [“age”, 18]<br>        ]</p>
+<pre><code>    let m = new Map()
+    item.forEach(([key, value]) =&gt; m.set(key, value))
+</code></pre>
+<p>不仅仅是数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构都可以当作Map构造函数的参数。这就是说，Set和Map都可以用来生成新的 Map。</p>
+<pre><code>    let s = new Set([
+        [&quot;name&quot;, &quot;tom&quot;],
+        [&quot;age&quot;, 18]
+    ])
+    
+    let m = new Map(s)
+    let m2 = new Map(m)
+    console.log(m == m2) //false
+</code></pre>
+<p>同样的值的两个实例，在 Map 结构中被视为两个键<br>        const map = new Map()</p>
+<pre><code>    const k1 = [&quot;a&quot;]
+    const k2 = [&quot;a&quot;]
+    
+    map.set(k1, 111).set(k2, 222)
+    
+    map.get(k1) // 111
+    map.get(k2) // 222
+</code></pre>
+<p>变量k1和k2的值是一样的，但是它们在 Map 结构中被视为两个键<br>由上可知，Map 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键。这就解决了同名属性碰撞(clash)的问题，我们扩展别人的库的时候，如果使用对象作为键名，就不用担心自己的属性与原作者的属性同名</p>
+<h3 id="map-的属性和操作方法"><a href="#map-的属性和操作方法" class="headerlink" title="map 的属性和操作方法"></a>map 的属性和操作方法</h3><ol>
+<li><p>size 属性<br>size属性返回map的成员总数</p>
+<pre><code> let map = new Map()
+ map.set(&quot;foo&quot;, 1)
+ map.set(&quot;bar&quot;, 2)
+ // map.size == 3
+</code></pre>
+</li>
+<li><p><code>set(key, value)</code><br>set方法设置键名key对应的键值为value，然后返回整个 Map 结构。如果key已经有值，则键值会被更新，否则就新生成该键</p>
+<pre><code> let m = new Map()
+ let a = &quot;abc&quot;
+ m.set(a, 3) //键是变量
+ m.set(&quot;edition&quot;, 6) // 键是字符串
+ m.set(262, &quot;standard&quot;) // 键是数值
+ m.set(undefined, &quot;nah&quot;) // 键是 undefined
+</code></pre>
+<p><code>set()</code>方法返回的是当前的Map对象，因此可以采用链式写法。</p>
+<pre><code> let a = &quot;abc&quot;
+ const m = new Map().set(a, 3).set(&quot;edition&quot;, 6).set(262, &quot;standard&quot;)
+</code></pre>
+</li>
+<li><p>get(key)<br><code>get()</code> 方法读取key所对应的键值</p>
+<pre><code> let map = new Map([
+     [&quot;foo&quot;, 1]
+ ])
+ map.get(&quot;foo&quot;) // 1
+</code></pre>
+</li>
+<li><p>has(key)<br><code>has()</code>方法返回一个布尔值，表示某个键是否在当前 Map 对象之中</p>
+<pre><code> let map = new Map([
+     [&quot;foo&quot;, 1]
+ ])
+ map.has(&quot;foo&quot;) // true
+ map.has(&quot;bar&quot;) //false
+</code></pre>
+</li>
+<li><p>delete(key)<br><code>delete()</code>方法删除某个键，返回true。如果删除失败，返回false</p>
+<pre><code> let map = new Map([
+     [&quot;foo&quot;, 1]
+ ])
+ map.delete(&quot;foo&quot;)
+ console.log(map.has(&quot;foo&quot;)) // false
+</code></pre>
+</li>
+<li><p>clear()<br><code>clear()</code>方法清除所有成员，没有返回值</p>
+<pre><code> let map = new Map([
+     [&quot;foo&quot;, 1],
+     [&quot;bar&quot;, 2]
+ ])
+ map.clear()
+ map.size //0
+</code></pre>
+</li>
+</ol>
+<h3 id="map-的遍历操作"><a href="#map-的遍历操作" class="headerlink" title="map 的遍历操作"></a>map 的遍历操作</h3><p>Map 结构原生提供三个遍历器生成函数和一个遍历方法。 </p>
+<ul>
+<li><p><code>keys()</code>: 返回键名的遍历器。 </p>
+</li>
+<li><p><code>values()</code>: 返回键值的遍历器。 </p>
+</li>
+<li><p><code>entries()</code>: 返回所有成员的遍历器。 </p>
+</li>
+<li><p><code>forEach()</code>: 遍历 Map 的所有成员</p>
+<pre><code>  let map = new Map([
+      [&quot;foo&quot;, 1],
+      [&quot;bar&quot;, 2]
+  ])
+
+  for (const key of map.keys()) &#123;
+      console.log(key)
+  &#125;
+  // foo , bar 
+  
+  for (const value of map.values()) &#123;
+      console.log(value)
+  &#125;
+  // 1 , 2
+
+  for (const item of map.entries()) &#123;
+      console.log(item)
+  &#125;
+  // [&quot;foo&quot;, 1] , [&quot;bar&quot;, 2]
+
+  for (const [key, value] of map.entries()) &#123;
+    console.log(key, value)
+  &#125;
+  // [&quot;foo&quot;, 1] , [&quot;bar&quot;, 2]
+
+  // 等同于使用map.entries()
+  for (const [key, value] of map) &#123;
+    console.log(key, value);
+  &#125;
+  // [&quot;foo&quot;, 1] , [&quot;bar&quot;, 2]
+</code></pre>
+</li>
+</ul>
+<p>上面代码最后的那个例子，表示 Map 结构的默认遍历器接口(<code>Symbol.iterator</code>属性)，就是<code>entries()</code>方法</p>
+<pre><code>    map[Symbol.iterator] === map.entries;
+    // true
+</code></pre>
+<p>结合数组的map方法、filter方法，可以实现 Map 的遍历和过滤(Map 本身没有map和filter方法)。</p>
+<pre><code>    const map0 = new Map().set(1, &quot;a&quot;).set(2, &quot;b&quot;).set(3, &quot;c&quot;);
+    
+    const map1 = new Map([...map0].filter(([k, v]) =&gt; k &lt; 3));
+    // 产生 Map 结构 &#123;1 =&gt; &#39;a&#39;, 2 =&gt; &#39;b&#39;&#125;
+    
+    const map2 = new Map([...map0].map(([k, v]) =&gt; [k * 2, &quot;_&quot; + v]));
+    // 产生 Map 结构 &#123;2 =&gt; &#39;_a&#39;, 4 =&gt; &#39;_b&#39;, 6 =&gt; &#39;_c&#39;&#125;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javaScript/" rel="tag"># javaScript</a>
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/05/Ajax/Ajax%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" rel="prev" title="Ajax跨域">
+      <i class="fa fa-chevron-left"></i> Ajax跨域
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/24/ES6/Class%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="next" title="Class的基本用法">
+      Class的基本用法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#set-%E4%B8%8E-map"><span class="nav-number">1.</span> <span class="nav-text">set 与 map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">1.1.</span> <span class="nav-text">set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set-%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">set 结构的声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">set 的初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">set 转换为数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">注</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">Set 实例的属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.3.</span> <span class="nav-text">遍历操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">1.2.</span> <span class="nav-text">map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#map-%E5%88%9B%E5%BB%BA"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">map 创建</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">map 的属性和操作方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-%E7%9A%84%E9%81%8D%E5%8E%86%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">map 的遍历操作</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fangck"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Fangck</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019-12 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fangck</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共84.1k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
